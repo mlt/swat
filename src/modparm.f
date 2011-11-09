@@ -220,9 +220,11 @@
       real, dimension (:), allocatable :: rs6,rs7,rk1,rk2,rk3,rk4,rk5
       real, dimension (:), allocatable :: rk6,bc1,bc2,bc3,bc4,ammonian
       real, dimension (:), allocatable :: orig_sedpstconc
-      real, dimension (:,:), allocatable :: wurch
       integer, dimension (:), allocatable :: icanal
       integer, dimension (:), allocatable :: itb
+!    ROYXIE patched here so wus data can be different every year START       
+      real, dimension (:,:,:), allocatable :: wupnd,wushal,wudeep,wurch
+!    ROYXIE patched here so wus data can be different every year E N D       
 ! msub = max number of subbasins
       real, dimension (:), allocatable :: ch_revap, dep_chan
       real, dimension (:), allocatable :: harg_petco, subfr_nowtr
@@ -496,9 +498,9 @@
       real, dimension (:,:), allocatable :: wgncur,wgnold,wrt,psetlp
       real, dimension (:,:), allocatable :: zdb,pst_surq,pst_enr
       real, dimension (:,:), allocatable :: plt_pst,pst_sed,psetlw
-      real, dimension (:,:), allocatable :: pcpband,wupnd,tavband,phi
+      real, dimension (:,:), allocatable :: pcpband,tavband,phi
 	  real, dimension (:,:), allocatable :: wat_phi
-      real, dimension (:,:), allocatable :: wushal,wudeep,tmnband,snoeb
+      real, dimension (:,:), allocatable :: tmnband,snoeb
       real, dimension (:,:), allocatable :: surf_bs,nsetlw,snotmpeb,bss
       real, dimension (:,:), allocatable :: tmxband,nsetlp
       real, dimension (:,:), allocatable :: rainsub,hhsubp,frad

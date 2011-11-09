@@ -222,7 +222,9 @@
       allocate (sedst(mch))
       allocate (vel_chan(mch))
 
-      allocate (wurch(12,mxsubch)) 
+!    ROYXIE patched here so wus data can be different every year START       
+!      allocate (wurch(12,mxsubch)) 
+!    ROYXIE patched here so wus data can be different every year E N D       
 
 !!    arrays for channel added by Balaji for the new routines
       allocate (ch_bnk_san(mch))
@@ -1218,9 +1220,11 @@
       allocate (tavband(10,mhru))
       allocate (tmnband(10,mhru))
       allocate (tmxband(10,mhru))
-      allocate (wudeep(12,mhru))
-      allocate (wupnd(12,mhru))
-      allocate (wushal(12,mhru))
+!     ROYXIE patched here so wus data can be different every year START
+!      allocate (wudeep(12,mhru))
+!      allocate (wupnd(12,mhru))
+!      allocate (wushal(12,mhru))
+!     ROYXIE patched here so wus data can be different every year E N D
 !     allocate (phi(13,msub+1))
       allocate (phi(13,mch))  
       allocate (wat_phi(13,mhru))

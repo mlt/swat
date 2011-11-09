@@ -71,6 +71,12 @@
       call getallo
       call allocate_parms
       call readfile
+!    ROYXIE patched here so wus data can be different every year START
+      allocate (wudeep(12,mhru,nbyr))
+      allocate (wupnd(12,mhru,nbyr))
+      allocate (wushal(12,mhru,nbyr))
+      allocate (wurch(12,mhru,nbyr))
+!    ROYXIE patched here so wus data can be different every year E N D
       call readbsn
       call readwwq
       if (fcstyr > 0 .and. fcstday > 0) call readfcst

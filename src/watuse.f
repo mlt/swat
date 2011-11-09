@@ -50,18 +50,24 @@
       sub_ha = da_ha * sub_fr(hru_sub(j))
       cnv = sub_ha * 10.
 
-      pnd_vol(j) = pnd_vol(j) - wupnd(i_mo,j) * 10000.
+!    ROYXIE patched here so wus data can be different every year START
+      pnd_vol(j) = pnd_vol(j) - wupnd(i_mo,j,curyr) * 10000.
+!    ROYXIE patched here so wus data can be different every year E N D
       if (pnd_vol(j) < 0.) pnd_vol(j) = 0.
 
       rchrg_src(j) = 0.
-      if (wushal(i_mo,j) < 0.) then
-        rchrg_src(j) = -1. * wushal(i_mo,j) * 10000. / cnv
+!    ROYXIE patched here so wus data can be different every year START
+      if (wushal(i_mo,j,curyr) < 0.) then
+        rchrg_src(j) = -1. * wushal(i_mo,j,curyr) * 10000. / cnv
       else
-        shallst(j) = shallst(j) - wushal(i_mo,j) * 10000. / cnv
+        shallst(j) = shallst(j) - wushal(i_mo,j,curyr) * 10000. / cnv
         if (shallst(j) < 0.) shallst(j) = 0.
       end if
+!    ROYXIE patched here so wus data can be different every year E N D
 
-      deepst(j) = deepst(j) - wudeep(i_mo,j) * 10000. / cnv
+!    ROYXIE patched here so wus data can be different every year START
+      deepst(j) = deepst(j) - wudeep(i_mo,j,curyr) * 10000. / cnv
+!    ROYXIE patched here so wus data can be different every year E N D
       if (deepst(j) < 0.) deepst(j) = 0.
 
       return

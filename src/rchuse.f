@@ -42,12 +42,16 @@
       wtrin = 0.
       wtrin = rtwtr
 
-      rtwtr = rtwtr - wurch(i_mo,jrch) * 10000.
+!    ROYXIE patched here so wus data can be different every year START
+      rtwtr = rtwtr - wurch(i_mo,jrch,curyr) * 10000.
+!    ROYXIE patched here so wus data can be different every year E N D
       if (rtwtr < 0.) rtwtr = 0.
 
       if (ievent > 2) then
         do ii = 1, 24
-          hrtwtr(ii) = hrtwtr(ii) - wurch(i_mo,jrch) * 10000. / 24.
+!    ROYXIE patched here so wus data can be different every year START
+          hrtwtr(ii) =hrtwtr(ii)-wurch(i_mo,jrch,curyr)*10000. / 24.
+!    ROYXIE patched here so wus data can be different every year E N D
           if (hrtwtr(ii) < 0.) hrtwtr(ii) = 0.
         end do
       end if

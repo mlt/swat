@@ -57,9 +57,13 @@
       if (eof < 0) exit
       read (105,5100,iostat=eof) (swupnd(mon),mon = 7,12)
       if (eof < 0) exit
-      read (105,5100,iostat=eof) (wurch(mon,i),mon = 1,6)
+!    ROYXIE patched here so wus data can be different every year START
+      read (105,5100,iostat=eof) (wurch(mon,i,curyr),mon = 1,6)
+!    ROYXIE patched here so wus data can be different every year E N D
       if (eof < 0) exit
-      read (105,5100,iostat=eof) (wurch(mon,i),mon = 7,12)
+!    ROYXIE patched here so wus data can be different every year START
+      read (105,5100,iostat=eof) (wurch(mon,i,curyr),mon = 7,12)
+!    ROYXIE patched here so wus data can be different every year E N D
       if (eof < 0) exit
       read (105,5100,iostat=eof) (swush(mon),mon = 1,6)
       if (eof < 0) exit
@@ -75,13 +79,14 @@
         ihru = 0
         ihru = nhru + j
         do mon = 1, 12
-          wupnd(mon,ihru) = swupnd(mon)
-          wushal(mon,ihru) = swush(mon)
-          wudeep(mon,ihru) = swudp(mon)
+!    ROYXIE patched here so wus data can be different every year START
+          wupnd(mon,ihru,curyr) = swupnd(mon)
+          wushal(mon,ihru,curyr) = swush(mon)
+          wudeep(mon,ihru,curyr) = swudp(mon)
+!    ROYXIE patched here so wus data can be different every year E N D
         end do
       end do
 
-      close (105)
 
       return
  5100 format (6f10.1)

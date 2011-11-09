@@ -135,6 +135,9 @@
       character (len=13) :: opsfile, wgnfile, pndfile, wusfile, septfile
       integer :: eof, mon, j, jj, ip, if, ir, myJ, pflag
       real :: ssnoeb(10), sno_sub, ch_ls, sumebfr
+!!    ROYXIE patched here so wus data can be different every year START       
+      character (len=3):: wuspathname
+!!    ROYXIE patched here so wus data can be different every year E N D       
 
       wgnfile = ""
       pndfile = ""
@@ -198,8 +201,6 @@
         open (104,file=pndfile)
       read (101,5100) titldum
       read (101,5300) wusfile
-        call caps(wusfile)
-        open (105,file=wusfile)
       read (101,5100) snofile
       if(snofile /='             ' .or. snofile /= 'Climate Change')then
         if (snofile /='             ') then
@@ -485,7 +486,16 @@
 !!read in subbasin impoundment parameter values
       call readpnd
 !!read in subbasin water use parameter values
-      call readwus
+!!      ROYXIE patched here so wus data can be different every year START       
+      call caps(wusfile)
+      do curyr = 1, nbyr
+        write(wuspathname, '(I3.3)') curyr
+        open (105,file=('wus' // wuspathname // '\' // wusfile))
+        call readwus
+        close (105)
+      end do
+      curyr = 0
+!!      ROYXIE patched here so wus data can be different every year E N D       
 
       close (101)
       return

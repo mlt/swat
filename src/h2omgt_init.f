@@ -61,9 +61,14 @@
 !!    partition subbasin consumptive water use between HRUs within subbasin
       do j = 1, nhru
         do mon = 1,12
-          wupnd(mon,j) = wupnd(mon,j) * hru_fr(j) 
-          wushal(mon,j) = wushal(mon,j) * hru_fr(j) 
-          wudeep(mon,j) = wudeep(mon,j) * hru_fr(j) 
+!    ROYXIE patched here so wus data can be different every year START
+          do curyr = 1, nbyr
+            wupnd(mon,j,curyr) = wupnd(mon,j,curyr) * hru_fr(j) 
+            wushal(mon,j,curyr) = wushal(mon,j,curyr) * hru_fr(j) 
+            wudeep(mon,j,curyr) = wudeep(mon,j,curyr) * hru_fr(j) 
+          end do
+          curyr = 0
+!    ROYXIE patched here so wus data can be different every year E N D
         end do
       end do
 
