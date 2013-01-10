@@ -331,3 +331,29 @@ zeroini.f
 )
 
 add_executable(swat ${SWAT_SRCS})
+
+if (CMAKE_BUILD_TYPE STREQUAL "PGO")
+
+  set(EXTRA_LINK_FLAGS "-fprofile-dir=${CMAKE_BINARY_DIR}/profile")
+  set(EXTRA_COMPILE_FLAGS "-Ofast ${EXTRA_LINK_FLAGS}")
+
+  file(MAKE_DIRECTORY ${CMAKE_BINARY_DIR}/profile)
+
+  add_executable(swat0 ${SWAT_SRCS})
+  set_target_properties(swat0 PROPERTIES
+    COMPILE_FLAGS "${EXTRA_COMPILE_FLAGS} -fprofile-generate"
+    LINK_FLAGS "${EXTRA_LINK_FLAGS} -fprofile-generate")
+
+  add_custom_target(swat0_run
+    COMMAND ${CMAKE_CURRENT_BINARY_DIR}/swat0
+    COMMAND ${CMAKE_COMMAND} -E remove_directory ${CMAKE_BINARY_DIR}/profile/CMakeFiles/swat.dir
+    COMMAND ${CMAKE_COMMAND} -E rename ${CMAKE_BINARY_DIR}/profile/CMakeFiles/swat0.dir ${CMAKE_BINARY_DIR}/profile/CMakeFiles/swat.dir
+    DEPENDS swat0
+    WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}/TxtInOut)
+
+  set_target_properties(swat PROPERTIES
+    COMPILE_FLAGS "${EXTRA_COMPILE_FLAGS} -fprofile-use"
+    LINK_FLAGS "${EXTRA_LINK_FLAGS} -fprofile-use")
+  add_dependencies(swat swat0_run)
+
+endif()
