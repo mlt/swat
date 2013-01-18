@@ -59,11 +59,19 @@
         if (eof < 0) exit
         read (113,1000,iostat=eof) (sub_timp(ib,i), ib = 1, 10)
         if (eof < 0) exit
-        exit
+        exit 
+      end do
+      
+      do ib = 1, 10
+          if (sub_sftmp(ib,i) <= 0.) sub_sftmp(ib,i) = sftmp
+          if (sub_smtmp(ib,i) <= 0.) sub_smtmp(ib,i) = smtmp
+          if (sub_smfmx(ib,i) <= 0.) sub_smfmx(ib,i) = smfmx
+          if (sub_smfmn(ib,i) <= 0.) sub_smfmn(ib,i) = smfmn
+          if (sub_timp(ib,i) <= 0.) sub_timp(ib,i) = timp
       end do
 
       close (113)
-
+        
       return
  1000 format (10f8.3)
  1001 format (a)
