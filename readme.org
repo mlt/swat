@@ -1,0 +1,121 @@
+#+TITLE: readme
+
+* About SWAT
+
+From [[http://swat.tamu.edu/][official site]]:
+
+#+BEGIN_QUOTE
+SWAT is a public domain model actively supported by the USDA
+Agricultural Research Service at the Grassland, Soil and Water
+Research Laboratory in Temple, Texas, USA.
+#+END_QUOTE
+
+* About this repository
+
+This is *not* an official repository for SWAT. It exists mostly
+because of the lack of official _public_ one.
+
+This repository is an attempt to bring various revisions under one
+umbrella to make it easier to track code changes and keep up with
+newer revisions. [[http://www.cmake.org/][CMake build system]] is used to make compiler and
+platform independent build process. Testing is mostly done with
+gfortran compiler on MS Windows and Ubuntu GNU/Linux.
+
+* Building SWAT from this repository
+
+** Prerequisites
+
+By default gfortran from GCC is used. Other Fortran compiler can be
+used by supplying a corresponding name to
+~-DCMAKE_Fortran_COMPILER=<name>~ like ~ifort~ provided it is
+properly installed.
+
+*** Windows
+
+- [[http://www.mingw.org/wiki/Getting_Started][MinGW with gfortran and MSYS]]
+- [[http://www.cmake.org/][CMake build system]]
+- [[http://msysgit.github.com/][msysGit]] (and optionally [[http://code.google.com/p/tortoisegit/][TortoiseGit]]) is recommended but no necessary as
+  current version can be downloaded as a [[https://github.com/mlt/swat/archive/master.zip][ZIP file]]
+
+*** Ubuntu GNU/Linux
+
+#+BEGIN_SRC sh :eval no
+sudo apt-get install git gfortran cmake
+#+END_SRC
+
+** GCC
+
+The following is for MS Windows. Instructions for Ubuntu GNU/Linux are
+similar just skip generator part (~-G "MSYS Makefiles~").
+
+#+BEGIN_SRC sh :eval no
+git clone https://github.com/mlt/swat.git
+cd swat
+mkdir -p build/Debug build/Release
+cd build/Debug
+cmake -DCMAKE_Fortran_FLAGS=-Og -DCMAKE_BUILD_TYPE=Debug -G "MSYS Makefiles" ../..
+make -j 4
+cd ../Release
+cmake "-DCMAKE_Fortran_FLAGS_RELEASE=-march=native -Ofast" -DCMAKE_BUILD_TYPE=Release -DCMAKE_EXE_LINKER_FLAGS=-s -G "MSYS Makefiles" ../..
+make -j 4
+make package
+#+END_SRC
+
+*Hint:* You may want to [[http://support.microsoft.com/kb/282301][enable /Quick Edit/]] for the ease of
+copy-pasting in a command window if on Windows. [[http://stackoverflow.com/questions/131955/keyboard-shortcut-to-paste-clipboard-content-into-command-prompt-window-win-xp][Also this link]]
+
+*** Profile guided optimization
+
+2-pass compilation may help to gain some performance by optimizing
+CPU instructions for most likely conditional branching in the code.
+
+Note that gfortran generated code is slower than that of Intel. Even
+with PGO resulting speed won't be stunning though you'll notice some
+difference.
+
+For PGO build to work, copy an existing ~TxtInOut~ folder into a
+cloned repository ~swat~ and do the following starting from repository
+root
+
+#+BEGIN_SRC sh :eval no
+mkdir -p build/PGO
+cd build/PGO
+cmake "-DCMAKE_Fortran_FLAGS=-march=native -Ofast" -DCMAKE_BUILD_TYPE=PGO -DCMAKE_EXE_LINKER_FLAGS=-s -G "MSYS Makefiles" ../..
+make -j 4
+#+END_SRC
+
+After first pass, SWAT will run your model and run statistics will be
+collected to adjust conditional branching code for the second
+pass. Final executable is in ~src~ sub-folder.
+
+** LLVM via DragonEgg
+
+It is possible to use [[http://llvm.org/][LLVM]] optimizers and code generator by means of [[http://dragonegg.llvm.org/][DragonEgg]] project, a GCC plugin.
+
+#+BEGIN_SRC sh :eval no
+mkdir -p build/LLVM
+cd build/LLVM
+cmake "-DCMAKE_Fortran_FLAGS=-fplugin=dragonegg -fplugin-arg-dragonegg-enable-gcc-optzns -O4" -DCMAKE_EXE_LINKER_FLAGS=-s -G "MSYS Makefiles" ../..
+make -j 4
+#+END_SRC
+
+** Intel Fortran
+
+Something like the following should do the job for Intel Fortran
+compiler once you change directory to cloned git repository.
+
+#+BEGIN_SRC sh :eval no
+mkdir -p build/ifort
+cd build/ifort
+cmake -DCMAKE_Fortran_COMPILER=ifort -DCMAKE_Fortran_FLAGS_RELEASE=-fast -DCMAKE_BUILD_TYPE=Release -DCMAKE_EXE_LINKER_FLAGS=-s ../..
+make -j 4
+#+END_SRC
+
+*** PGO
+
+#+BEGIN_SRC sh :eval no
+mkdir -p build/IPGO
+cd build/IPGO
+cmake -DCMAKE_Fortran_COMPILER=ifort -DCMAKE_Fortran_FLAGS=-fast -DCMAKE_BUILD_TYPE=IPGO -DCMAKE_EXE_LINKER_FLAGS=-s ../..
+make -j 4
+#+END_SRC
