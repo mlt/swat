@@ -78,8 +78,8 @@
 	end if
       sepday = inflpcp + aird(j)
 !! if unlimted, or groundwater source reset aird here (otherwise in virtual)
-	if (irrsc(j) > 2)  aird(j) = 0.
-
+!!	if (irrsc(j) > 2)  aird(j) = 0.
+      aird(j) = 0.
 
       !! calculate crack flow 
       if (icrk == 1) then 
