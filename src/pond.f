@@ -1,4 +1,5 @@
-      subroutine pond(k)
+      !! Almendinger/Ulrich: add second var to sub
+      subroutine pond(k, totno3_conc) 
       
 !!    ~ ~ ~ PURPOSE ~ ~ ~
 !!    this subroutine routes water and sediment through ponds
@@ -124,9 +125,28 @@
 
 !!    ~ ~ ~ ~ ~ ~ END SPECIFICATIONS ~ ~ ~ ~ ~ ~
 
+!!   ************************************************************************ 
+!!    Almendinger/Ulrich -- New Variables
+!!
+!!    ~ ~ ~ INCOMING VARIABLES ~ ~ ~
+!!    name        |units         |definition
+!!    ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
+!!    totno3_conc |kg/m^3        |NO3 concentration in water body prior to any settling, outflow, or atmospheric exchanges
+!!
+!!    ~ ~ ~ OUTGOING VARIABLES ~ ~ ~
+!!    name        |units         |definition
+!!    ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
+!!    totno3_conc |kg/m^3        |NO3 concentration in water body prior to any settling, outflow, or atmospheric exchanges
+!!
+!!   Almendinger/Ulrich END NEW VAR's ********************************************************************** 
+
+!!    ~ ~ ~ ~ ~ ~ END SPECIFICATIONS ~ ~ ~ ~ ~ ~
+
       use parm
 
       integer, intent (in) :: k
+      !!Almendinger/Ulrich -- New Sub return value
+      real, intent (out) :: totno3_conc      
       real :: vol, sed, pndsa, xx, targ, tpco, phosk, nitrok, chlaco
       integer :: iseas
 	real :: san, sil, cla, sag, lag, inised, finsed,setsed,remsetsed
@@ -159,6 +179,18 @@
         pndsep = pnd_k(k) * pndsa * 240.
         pndpcp = subp(k) * pndsa * 10.
 
+        !! Almendinger/Ulrich NEW CODE: compute interim NO3 concentration in water body
+        !!  prior to any settling, outflow, or atmospheric exchanges.
+        !!  This concentration will be used to characterize NO3 for 
+        !!  seepage when pond volume approaches zero.
+        If ((vol + pndflwi) > 0.001) then
+          totno3_conc = (pnd_no3(k) + pnd_no3s(k) + pnd_no3g(k)) /      &
+     &                                                (vol + pndflwi)
+        else
+          totno3_conc = 0
+        end if
+        !! END Almendinger/Ulrich NEW CODE
+        
         !! new water volume for day
         pnd_vol(k) = pnd_vol(k) - pndsep - pndev + pndpcp + pndflwi
 
@@ -173,6 +205,9 @@
             pndev = pndev + pndsep
             pndsep = 0.
           end if
+          !! Assume all nutrients are lost from aquatic system when  
+          !!  volume goes to zero. 
+          !!  (But leave totno3_conc at inflowing value)            
           pnd_sed(k) = 0.
           pnd_san(k) = 0.
           pnd_sil(k) = 0.
@@ -189,9 +224,18 @@
           pnd_no3g(k) = 0.
           pnd_chla(k) = 0.
           pnd_seci(k) = 0.
-
+          
+        !! For all cases where pond has water (vol > 0): 
         else
-        
+
+          !! compute new sediment concentration
+          pnd_sed(k) = (sed * vol + pndsedin) / pnd_vol(k)
+          pnd_san(k) = (san * vol + pndsanin) / pnd_vol(k)
+          pnd_sil(k) = (sil * vol + pndsilin) / pnd_vol(k)
+          pnd_cla(k) = (cla * vol + pndclain) / pnd_vol(k)
+          pnd_sag(k) = (sag * vol + pndsagin) / pnd_vol(k)
+          pnd_lag(k) = (lag * vol + pndlagin) / pnd_vol(k)
+
           !! compute outflow
           if (pnd_evol(k) <= 0.) then
             !! all storage over principle is outflow
@@ -205,10 +249,16 @@
             !! exceeds this level, all excess is released
             pndflwo = pnd_vol(k) - pnd_evol(k)
           else
-            !! target storage based on flood season and soil water
+            !! target storage based on flood season and soil water, 
+            !!   or simply on pvol if no flood season specified
             xx = 0.
             targ = 0.
-            if (iflod2(k) > iflod1(k)) then
+            
+            !! *************************************************************
+            !! Almendinger/Ulrich: if you want to use flood season, then 
+            !! Set iflod1 <> iflod2.
+            !! If iflod1 < iflod2, then non-flood period is within the same calendar year
+            if (iflod1(k) < iflod2(k)) then
               if (i_mo > iflod1(k) .and. i_mo < iflod2(k)) then
                 targ = pnd_evol(k)
               else
@@ -216,7 +266,10 @@
                 targ = pnd_pvol(k) + .5 * (1. - xx) * (pnd_evol(k) -    &
      &                                                      pnd_pvol(k))
               end if
-            else
+              
+            !!Else if iflod1 > iflod2, then non-flood period goes from
+            !!  end of one calendar year into the next calendar year
+            else if (iflod1(k) > iflod2(k)) then
               if (i_mo > iflod1(k) .or. i_mo < iflod2(k)) then
                 targ = pnd_evol(k)
               else
@@ -224,32 +277,22 @@
                 targ = pnd_pvol(k) + .5 * (1. - xx) * (pnd_evol(k) -    &
      &                                                      pnd_pvol(k))
               end if
+              
+            !! Else, if you don't want to use flood season,
+            !! then use simple pond outflow, where targ = pnd_pvol.
+            !! For this option, set iflod1 = iflod2.  Default is 0 = 0.  
+            else
+              targ = pnd_pvol(k)  
             end if
+            !! END Almendinger/Ulrich code
+            !! *************************************************************
+            
             if (pnd_vol(k) > targ) then
               pndflwo = (pnd_vol(k) - targ) / ndtarg(k)
             else
               pndflwo = 0.
             end if
           end if
-          
-          !! compute new sediment concentration
-          if (pndsedin < 1.e-6) pndsedin = 0.
-	    if (pndsa == 0.) pndsa = 0.001    !!MJW added line of code 040811
-          velofl = (pndflwo / pndsa) / 10000.
-          if (velofl > 1.e-6) then
-             trappnd = velsetlp(k) / velofl
-             if (trappnd > 1.) trappnd = 1.
-             susp = 1. - trappnd
-          else
-             susp = 0.
-          endif
-               
-          pnd_sed(k) = (sed * vol + susp * pndsedin) / pnd_vol(k)
-          pnd_san(k) = (san * vol + pndsanin) / pnd_vol(k)
-          pnd_sil(k) = (sil * vol + pndsilin) / pnd_vol(k)
-          pnd_cla(k) = (cla * vol + pndclain) / pnd_vol(k)
-          pnd_sag(k) = (sag * vol + pndsagin) / pnd_vol(k)
-          pnd_lag(k) = (lag * vol + pndlagin) / pnd_vol(k)
 
           !! compute final pond volume
           pnd_vol(k) = pnd_vol(k) - pndflwo
@@ -341,13 +384,38 @@
           pnd_no3s(k) = pnd_no3s(k) * (1. - nitrok)
           pnd_no3g(k) = pnd_no3g(k) * (1. - nitrok)
 
+          !! ******************************************************************
+          !! Almendinger/Ulrich code : change as in wetland.f
+          if (pnd_solp(k) < 1.e-6) pnd_solp(k) = 0.0
+          if (pnd_psed(k) < 1.e-6) pnd_psed(k) = 0.0
+          if (pnd_orgp(k) < 1.e-6) pnd_orgp(k) = 0.0
+          if (pnd_solpg(k) < 1.e-6) pnd_solpg(k) = 0.0
+          if (pnd_orgn(k) < 1.e-6) pnd_orgn(k) = 0.0
+          if (pnd_no3(k) < 1.e-6) pnd_no3(k) = 0.0
+          if (pnd_no3s(k) < 1.e-6) pnd_no3s(k) = 0.0
+          if (pnd_no3g(k) < 1.e-6) pnd_no3g(k) = 0.0
+
+          !! ******************************************************************
+          !! Almendinger/Ulrich: Calculate resulting nutrient concentrations,
+          !!   accounting for losses of particulate species to outflow, and
+          !!   losses of soluble species to outflow and seepage.
+          !! Calculate resulting no3 concentration, as kg/m^3
+          totno3_conc = 0.
+          totno3_conc = (pnd_no3(k) + pnd_no3s(k) + pnd_no3g(k)) /      &
+     &                           (pnd_vol(k) + pndflwo + pndsep)
+     
+          !! Calculate resulting TP concentration   
           tpco = 0.
           if (pnd_vol(k) + pndflwo > 0.1) then
-          tpco = 1.e+6 * (pnd_solp(k) + pnd_orgp(k) + pnd_psed(k) +     &
-     &                            pnd_solpg(k)) / (pnd_vol(k) + pndflwo)
+          tpco = 1.e+6 *                                                &
+     &        ((pnd_orgp(k)+pnd_psed(k)) / (pnd_vol(k)+pndflwo) +       &
+     &         (pnd_solp(k)+pnd_solpg(k)) / (pnd_vol(k)+pndflwo+pndsep))
           else
             tpco = 0.
           endif
+          !! END Almendinger/Ulrich code
+          !! ******************************************************************
+
           chlaco = 0.
           pnd_chla(k) = 0.
           pnd_seci(k) = 0.

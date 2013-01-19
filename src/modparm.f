@@ -626,4 +626,37 @@
 !!    added for manure Armen Jan 2009
  !!     real, dimension (:,:), allocatable :: sol_mc, sol_mn, sol_mp
 
+!! ****************************************************************************        
+!! Almendinger/Ulrich 8-28-09: ADDED NEW arrays for pond and wetland seepage      
+      real, dimension (:), allocatable :: rchrg_wet, rchrg_pnd
+      real, dimension (:), allocatable :: gw_q_wet, gw_q_pnd
+      real, dimension (:), allocatable :: gw_q_res, sepmm_res
+!! Almendinger/Ulrich 09-09-09: ADDED NEW qdr arrays for pond and wetland yield partitioning  
+      real, dimension (:), allocatable :: qdr_wet, qdr_pnd
+      
+      real, dimension (:), allocatable :: sedyld_wet, sedorgn_wet
+      real, dimension (:), allocatable :: surqno3_wet,latno3_wet
+      real, dimension (:), allocatable :: no3gw_wet,sedorgp_wet
+      real, dimension (:), allocatable :: sedminpa_wet,sedminps_wet
+      real, dimension (:), allocatable :: surqsolp_wet, minpgw_wet
+      
+      real, dimension (:), allocatable :: sedyld_pnd, sedorgn_pnd
+      real, dimension (:), allocatable :: surqno3_pnd,latno3_pnd
+      real, dimension (:), allocatable :: no3gw_pnd,sedorgp_pnd
+      real, dimension (:), allocatable :: sedminpa_pnd,sedminps_pnd
+      real, dimension (:), allocatable :: surqsolp_pnd, minpgw_pnd
+!! Almendinger/Ulrich 08-19-11: ADDED arrays for pond and wetland yield partitioning of
+!!                            : NEW sand, silt, clay, agg's frac's                                  
+      real, dimension (:), allocatable :: sanyld_wet, silyld_wet
+      real, dimension (:), allocatable :: clayld_wet, sagyld_wet
+      real, dimension (:), allocatable :: lagyld_wet     
+      real, dimension (:), allocatable :: sanyld_pnd, silyld_pnd
+      real, dimension (:), allocatable :: clayld_pnd, sagyld_pnd
+      real, dimension (:), allocatable :: lagyld_pnd    
+!! Almendinger/Ulrich: new reservoir groundwater outflow var
+      real :: resgwflwo      
+!! Almendinger/Ulrich 09-01-09 add addl gwseep variables for ponds/wetlands
+      real :: gwseep_wet, gwseep_pnd      
+! ***********************************************************************************
+
       end module parm

@@ -144,7 +144,75 @@
 !!    SWAT: solp, subwq, bacteria, urban, pothole, latsed, surfstor
 !!    SWAT: substor, wetland, hrupond, irrsub, autoirr, watuse, watbal
 !!    SWAT: sumv, virtual
-
+!!   ************************************************************************ 
+!!    Almendinger/Ulrich -- NEW VARIABLES
+!!
+!!    ~ ~ ~ OUTGOING VARIABLES ~ ~ ~
+!!~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
+!!    latno3_pnd(:)   |kg N/ha   |daily loading to reach from NO3-N entering 
+!!                               |pond via lateral flow and exiting
+!!                               |via seepage gw return flow
+!!    minpgw_pnd(:)   |kg P/ha   |daily loading to reach from soluble P entering 
+!!                               |pond via gw return flow and exiting
+!!                               |via seepage gw return flow
+!!    no3gw_pnd(:)    |kg N/ha   |daily loading to reach from NO3-N entering
+!!                               |pond via gw return flow and exiting
+!!                               |via seepage gw return flow
+!!    qdr_pnd(:)      |mm H2O    |daily water entering pond as surface/lat/gw flow  
+!!                               |and exiting as surface/gw return flow
+!!    sedminpa_pnd(:) |kg P/ha   |daily loading to reach from active mineral P
+!!                               |sorbed to sed. entering pond via surface runoff
+!!                               |and exiting via surface flow
+!!    sedminps_pnd(:) |kg P/ha   |daily loading to reach from stable mineral P
+!!                               |sorbed to sed. entering pond via surface runoff
+!!                               |and exiting via surface flow
+!!    sedorgn_pnd(:)  |kg N/ha   |daily loading to reach from organic N
+!!                               |entering pond via surface runoff and 
+!!                               |exiting via surface flow
+!!    sedorgp_pnd(:)  |kg P/ha   |daily loading to reach from organic P
+!!                               |entering pond via surface runoff and 
+!!                               |exiting via surface flow
+!!    sedyld_pnd(:)   |met tons  |daily loading to reach from eroded sediment
+!!                               |entering pond via surface runoff and 
+!!                               |exiting via surface flow
+!!    surqno3_pnd(:)  |kg N/ha   |daily loading to reach from NO3-N
+!!                               |entering pond via surface runoff and 
+!!                               |exiting via surface flow
+!!    surqsolp_pnd(:) |kg P/ha   |daily loading to reach from soluble P
+!!                               |entering pond via surface runoff and 
+!!                               |exiting via surface flow
+!!    latno3_wet(:)   |kg N/ha   |daily loading to reach from NO3-N entering 
+!!                               |wetland via lateral flow and exiting
+!!                               |via seepage gw return flow
+!!    minpgw_wet(:)   |kg P/ha   |daily loading to reach from soluble P entering 
+!!                               |wetland via gw return flow and exiting
+!!                               |via seepage gw return flow
+!!    no3gw_wet(:)    |kg N/ha   |daily loading to reach from NO3-N entering
+!!                               |wetland via gw return flow and exiting
+!!                               |via seepage gw return flow
+!!    qdr_wet(:)      |mm H2O    |daily water entering wetland as surface/lat/gw flow  
+!!                               |and exiting as surface/gw flow
+!!    sedminpa_wet(:) |kg P/ha   |daily loading to reach from active mineral P
+!!                               |sorbed to sed. entering wetland via surface runoff
+!!                               |and exiting via surface flow
+!!    sedminps_wet(:) |kg P/ha   |daily loading to reach from stable mineral P
+!!                               |sorbed to sed. entering wetland via surface runoff
+!!                               |and exiting via surface flow
+!!    sedorgn_wet(:)  |kg N/ha   |daily loading to reach from organic N
+!!                               |entering wetland via surface runoff and 
+!!                               |exiting via surface flow
+!!    sedorgp_wet(:)  |kg P/ha   |daily loading to reach from organic P
+!!                               |entering wetland via surface runoff and 
+!!                               |exiting via surface flow
+!!    sedyld_wet(:)   |met tons  |daily loading to reach from eroded sediment
+!!                               |entering wetland via surface runoff and 
+!!                               |exiting via surface flow
+!!    surqno3_wet(:)  |kg N/ha   |daily loading to reach from NO3-N
+!!                               |entering wetland via surface runoff and 
+!!                               |exiting via surface flow
+!!    surqsolp_wet(:) |kg P/ha   |daily loading to reach from soluble P
+!!                               |entering wetland via surface runoff and 
+!!                               |exiting via surface flow
 !!    ~ ~ ~ ~ ~ ~ END SPECIFICATIONS ~ ~ ~ ~ ~ ~
 
       use parm
@@ -442,7 +510,8 @@
           call grass_wway
         end if
 
-        !! compute water yield for HRU
+        !! compute water yield for HRU, prior to modification by Pond and Wetland processes,
+        !!   that will transform some inputs into surface flow (as spillage) and groundwater flow (as seepage)
         qdr(j) = qday + latq(j) + gw_q(j) + qtile
         if (qdr(j) < 0.) qdr(j) = 0.
         if (qdr(j) > 0.) then
@@ -451,11 +520,117 @@
           qdfr = 0.
         end if
 
+!! ********************************************************************************************************        
+!! Almendinger/Ulrich: NEW code Part 1: partition HRU water and chemical yields into separate pond and wetland components
+!! so IF both features are used in a subbasin they act in parallel not in series
+
+        !! IMPORTANT: Requires wet_fr(j) + pnd_fr(j) <= 1.0 otherwise double-counting will occur
+
+        !! Wetland fractions 
+        qdr_wet(j) = wet_fr(j) * qdr(j)
+        
+        sedyld_wet(j) = sedyld(j) * wet_fr(j)        
+        sedorgn_wet(j) = sedorgn(j) * wet_fr(j)
+        surqno3_wet(j) = surqno3(j) * wet_fr(j)
+        latno3_wet(j) = latno3(j) * wet_fr(j)
+        no3gw_wet(j) = no3gw(j) * wet_fr(j)
+        sedorgp_wet(j) = sedorgp(j) * wet_fr(j)
+        sedminpa_wet(j) = sedminpa(j) * wet_fr(j)
+        sedminps_wet(j) = sedminps(j) * wet_fr(j)
+        surqsolp_wet(j) = surqsolp(j) * wet_fr(j)
+        minpgw_wet(j) = minpgw(j) * wet_fr(j)   
+        
+        sanyld_wet(j) = sanyld(j) * wet_fr(j)
+        silyld_wet(j) = silyld(j) * wet_fr(j)
+        clayld_wet(j) = clayld(j) * wet_fr(j)
+        sagyld_wet(j) = sagyld(j) * wet_fr(j)
+        lagyld_wet(j) = lagyld(j) * wet_fr(j)
+        
+        
+        !! Pond fractions
+        qdr_pnd(j) = pnd_fr(j) * qdr(j)
+        
+        sedyld_pnd(j) = sedyld(j) * pnd_fr(j) 
+        sedorgn_pnd(j) = sedorgn(j) * pnd_fr(j)
+        surqno3_pnd(j) = surqno3(j) * pnd_fr(j)
+        latno3_pnd(j) = latno3(j) * pnd_fr(j)
+        no3gw_pnd(j) = no3gw(j) * pnd_fr(j)
+        sedorgp_pnd(j) = sedorgp(j) * pnd_fr(j)
+        sedminpa_pnd(j) = sedminpa(j) * pnd_fr(j)
+        sedminps_pnd(j) = sedminps(j) * pnd_fr(j)
+        surqsolp_pnd(j) = surqsolp(j) * pnd_fr(j)
+        minpgw_pnd(j) = minpgw(j) * pnd_fr(j)           
+        
+        sanyld_pnd(j) = sanyld(j) * pnd_fr(j)
+        silyld_pnd(j) = silyld(j) * pnd_fr(j)
+        clayld_pnd(j) = clayld(j) * pnd_fr(j)
+        sagyld_pnd(j) = sagyld(j) * pnd_fr(j)
+        lagyld_pnd(j) = lagyld(j) * pnd_fr(j)        
+        
+        !! Subtract off yield(s) being routed to ponds and/or wetlands: non _pnd and _wet var's below represent "bypass" values
+        qdr(j) = qdr(j) - qdr_wet(j) - qdr_pnd(j)  
+ 
+        sedorgn(j) = sedorgn(j) - sedorgn_wet(j) - sedorgn_pnd(j)
+        surqno3(j) = surqno3(j) - surqno3_wet(j) - surqno3_pnd(j) 
+        latno3(j) = latno3(j) - latno3_wet(j) - latno3_pnd(j)
+        no3gw(j) = no3gw(j) - no3gw_wet(j) - no3gw_pnd(j)
+        sedorgp(j) = sedorgp(j) - sedorgp_wet(j) - sedorgp_pnd(j)
+        sedminpa(j) = sedminpa(j) - sedminpa_wet(j) - sedminpa_pnd(j)
+        sedminps(j) = sedminps(j) - sedminps_wet(j) - sedminps_pnd(j)
+        surqsolp(j) = surqsolp(j) - surqsolp_wet(j) - surqsolp_pnd(j)
+        minpgw(j) = minpgw(j) - minpgw_wet(j) - minpgw_pnd(j)
+        
+        sedyld(j) = sedyld(j) - sedyld_wet(j) - sedyld_pnd(j) 
+        
+        sanyld(j) = sanyld(j) - sanyld_wet(j) - sanyld_pnd(j) 
+        silyld(j) = silyld(j) - silyld_wet(j) - silyld_pnd(j) 
+        clayld(j) = clayld(j) - clayld_wet(j) - clayld_pnd(j) 
+        sagyld(j) = sagyld(j) - sagyld_wet(j) - sagyld_pnd(j) 
+        lagyld(j) = lagyld(j) - lagyld_wet(j) - lagyld_pnd(j) 
+        
+
+!! END Almendinger/Ulrich: NEW code Part 1
+!! ********************************************************************************************************                
+        
         !! compute wetland processes
         call wetlan
 
         !! compute pond processes
         call hrupond
+
+!! ********************************************************************************************************        
+!! Almendinger/Ulrich: NEW code Part 2: Calc FINAL HRU yields for day: 
+        
+        !! Add HRU yield components processed by wetlands and/or ponds back to yields that bypassed them, if any (i.e., when wet_fr(j) + pnd_fr(j) < 1.) 
+        qdr(j) = qdr(j) + qdr_wet(j) +  qdr_pnd(j)
+        
+        !! It might be good to adjust the components of the HRU water balance here, to account for conversion of qday, latq, gw_q, and qtile entering wetlands
+        !!   & ponds into sur & gw Q out of wetlands and ponds.  But gw_q(j) cannot be altered here because tomorrow's gw_q is calculated starting from today's.  
+        !!   Perhaps latq(j) has the same problem.  Local variables would have to be created, and the summary routines (sumv.f and virtual.f) would have
+        !!   to be modified to receive those local variables, rather than gw_q(j) and latq(j).   -- Almendinger, 2011
+        
+        !! Add back HRU pond and wetland components for nutrients to get final yields
+        sedorgn(j) = sedorgn(j) + sedorgn_wet(j) + sedorgn_pnd(j)
+        surqno3(j) = surqno3(j) + surqno3_wet(j) + surqno3_pnd(j) 
+        latno3(j) = latno3(j) + latno3_wet(j) + latno3_pnd(j)
+        no3gw(j) = no3gw(j) + no3gw_wet(j) + no3gw_pnd(j)
+        sedorgp(j) = sedorgp(j) + sedorgp_wet(j) + sedorgp_pnd(j)
+        sedminpa(j) = sedminpa(j) + sedminpa_wet(j) + sedminpa_pnd(j)
+        sedminps(j) = sedminps(j) + sedminps_wet(j) + sedminps_pnd(j)
+        surqsolp(j) = surqsolp(j) + surqsolp_wet(j) + surqsolp_pnd(j)
+        minpgw(j) = minpgw(j) + minpgw_wet(j) + minpgw_pnd(j) 
+
+        sedyld(j) = sedyld(j) + sedyld_wet(j) + sedyld_pnd(j) 
+        
+        sanyld(j) = sanyld(j) + sanyld_wet(j) + sanyld_pnd(j) 
+        silyld(j) = silyld(j) + silyld_wet(j) + silyld_pnd(j) 
+        clayld(j) = clayld(j) + clayld_wet(j) + clayld_pnd(j) 
+        sagyld(j) = sagyld(j) + sagyld_wet(j) + sagyld_pnd(j) 
+        lagyld(j) = lagyld(j) + lagyld_wet(j) + lagyld_pnd(j)         
+       
+!! Almendinger/Ulrich: NEW code Part 2
+!! ********************************************************************************************************    
+        
         xx = sed_con(j)+soln_con(j)+solp_con(j)+orgn_con(j)+orgp_con(j)
         if (xx > 1.e-6) then
           call urb_bmp

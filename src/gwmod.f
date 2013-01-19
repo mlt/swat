@@ -82,13 +82,17 @@
       rchrg_karst = 0.
       rchrg1 = rchrg(j) + rchrg_src(j)
 
-!! add seepage from secondary channels, ponds, and wetlands;
-      rchrg_karst = tloss + twlpnd + twlwet
+      !! add seepage from secondary channels
+      !! Almendinger/Ulrich -- wetland and pond seepage recharge/return flow now handled in wetland.f and hrupond.f respectively
+      rchrg_karst = tloss
+      !! OLD CODE: add seepage from secondary channels, ponds, and wetlands; 
+      !! rchrg_karst = tloss + twlpnd + twlwet 
+      
 !! compute shallow aquifer level for current day, assumes karst losses 
 !! infiltrate at the same speed as what goes through the soil profile.
       rchrg(j) = 0.
       rchrg(j) = (1.-gw_delaye(j)) * (sepbtm(j) + rchrg_karst) +        &
-     &gw_delaye(j) * rchrg1
+     &  gw_delaye(j) * rchrg1
       if (rchrg(j) < 1.e-6) rchrg(j) = 0.
 
 !! compute deep aquifer level for day

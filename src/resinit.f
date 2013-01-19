@@ -69,7 +69,17 @@
 !!    ii          |none          |counter
 !!    jres        |none          |reservoir number
 !!    ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
-
+!! *************************************************************************************************
+!!    Almendinger/Ulrich -- New Variables
+!!
+!!    ~ ~ ~ INCOMING VARIABLES ~ ~ ~
+!!    name        |units         |definition
+!!    ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
+!!    resgwflwo   |m^3 H2O       |water leaving reservoir as gw return flow for day
+!!    ~ ~ ~ OUTGOING VARIABLES ~ ~ ~
+!!    resgwflwo   |m^3 H2O       |water leaving reservoir as gw return flow for day
+!!
+!!   Almendinger/Ulrich END NEW VAR's ********************************************************************** 
 !!    ~ ~ ~ ~ ~ ~ END SPECIFICATIONS ~ ~ ~ ~ ~ ~
 
       use parm
@@ -96,6 +106,10 @@
       resflwi = 0.
       resflwi = varoute(2,inum2)
       resflwo = 0.
+      
+      !!Almendinger/Ulrich
+      resgwflwo = 0.      
+      
       respcp = 0.
       resnh3o = 0.
       resno2o = 0.
@@ -117,13 +131,13 @@
 
       if (varoute(3,inum2) < 1.e-6) varoute(3,inum2) = 0.0
       ressedo = 0.
-
+      ! 2009 - separate sediment in texture classes
       ressano = 0.
       ressilo = 0.
       resclao = 0.
       ressago = 0.
       reslago = 0.
-	  resgrao = 0.
+	resgrao = 0.
 
       ressep = 0.
       ressolpo = 0.

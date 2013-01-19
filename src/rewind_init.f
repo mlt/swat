@@ -397,6 +397,13 @@
       res_chla = 0.
       res_seci = 0.
 
+!! Almendinger/Ulrich:  for pond and wetland gw recharge and return flow 
+      rchrg_wet = 0.  
+      rchrg_pnd = 0.        
+      gw_q_wet = 0.
+      gw_q_pnd = 0.
+      gw_q_res = 0.
+
 !! reset random number generator seeds
       rndseed = 0
       rnd2 = 0.

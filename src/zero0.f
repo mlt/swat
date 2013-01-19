@@ -397,6 +397,11 @@
 	  vfsi = 0.
       vfsch = 0.
       wshd_aamon = 0.
-
+      
+!! Almendinger/Ulrich 8-28-09: ADDED NEW arrays for pond and wetland return flow            
+      gw_q_wet = 0.
+      gw_q_pnd = 0.      
+      gw_q_res = 0.  
+          
       return
       end

@@ -186,7 +186,41 @@
 
 !!    ~ ~ ~ SUBROUTINES/FUNCTIONS CALLED ~ ~ ~
 !!    SWAT: resinit, irr_res, res, resnut, lakeq
+!!   ************************************************************************ 
+!!    Almendinger/Ulrich -- New Variables
+!!
+!!    ~ ~ ~ INCOMING VARIABLES ~ ~ ~
+!!    name        |units         |definition
+!!    ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
+!!    alpha_bf(:) |days          |alpha factor for groundwater recession curve
+!!    alpha_bfe(:)|none          |Exp(-alpha_bf(:))
+!!    deepst(:)   |mm H2O        |depth of water in deep aquifer     
+!!    gwminp(:)   |mg P/L        |soluble P concentration in groundwater
+!!    hru_ha(:)   |ha            |area of HRU in hectares 
+!!    qw_q_res(:) |mm H2O        |groundwater contribution to streamflow from
+!!                               |wetland seepage on current day
+!!    gwqmn(:)    |mm H2O        |threshold depth of water in shallow aquifer
+!!                               |required before groundwater flow will occur
+!!    rchrg_dp(:) |none          |recharge to deep aquifer: the fraction of
+!!                               |wetland seepage that reaches the deep aquifer
+!!    rchrg_res(:)|mm H2O        |amount of water recharging both aquifers on
+!!                               |current day in HRU from wetland
+!!    sepmm_res(:)|m^3 H2O       |depth of reservoir seepage over HRU area
+!!    shallst(:)  |mm H2O        |depth of water in shallow aquifer
 
+!!    ~ ~ ~ OUTGOING VARIABLES ~ ~ ~
+!!~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
+!!    deepst(:)   |mm H2O        |depth of water in deep aquifer     
+!!    gwseep_res  |mm H2O        |amount of water from wetland recharging deep 
+!!                               |aquifer on current day in HRU
+!!    qw_q_res(:) |mm H2O        |groundwater contribution to streamflow from
+!!                               |wetland seepage on current day
+!!    rchrg_res(:)|mm H2O        |amount of water recharging both aquifers on
+!!                               |current day in HRU from wetland
+!!    resgwflwo   |m^3 H2O       |water leaving reservoir as gw return flow for day
+!!    shallst(:)  |mm H2O        |depth of water in shallow aquifer
+!!
+!!   Almendinger/Ulrich END NEW VAR's ********************************************************************** 
 !!    ~ ~ ~ ~ ~ ~ END SPECIFICATIONS ~ ~ ~ ~ ~ ~
 
       use parm
@@ -194,7 +228,9 @@
       integer :: jres, k, ii
       real :: sepmm, resorgpc, ressolpc, sedcon, resorgnc, resno3c
       real :: resno2c, resnh3c
-
+      !! Almendinger/Ulrich -- new var
+      real :: gwseep_res    
+      
       jres = 0
       jres = inum1
 !!    ires_code = 0 do not turn off reservoirs
@@ -240,8 +276,8 @@
         !! perform reservoir water/sediment balance
         call res
 
-        !! perform reservoir nutrient balance
-        call resnut
+        !! Almendinger/Ulrich: moved down-- perform reservoir nutrient balance
+        !!call resnut
 
         !! perform reservoir pesticide transformations
         call lakeq
@@ -250,12 +286,52 @@
         if (ressep > 0.) then
           sepmm = 0.
           sepmm = ressep / (da_ha * sub_fr(res_sub(jres)) * 10.)
+          resgwflwo = 0.         !Doesn't seem to be initialized by resinit.f for some reason
           do k = 1, nhru
             if (hru_sub(k) == res_sub(jres)) then
-              shallst(k) = shallst(k) + sepmm
+              !! *********************************************************************************************************
+              !!Almendinger/Ulrich: NEW CODE: compute groundwater recharge and return flow from bottom seepage of reservoir
+              
+              !Adjust deep aq storage
+              deepst(k) = deepst(k) + sepmm * rchrg_dp(k)
+              !Adjust shallow aq storage
+              shallst(k) = shallst(k) + sepmm * (1. - rchrg_dp(k))
+                                                               
+              !! Almendinger/Ulrich: compute per-HRU groundwater contribution to streamflow for day
+              if (shallst(k) > gwqmn(k)) then
+                  gw_q_res(k) = gw_q_res(k) * alpha_bfe(k) +            &
+     &               sepmm * (1. - rchrg_dp(k)) * (1. - alpha_bfe(k))
+              else
+                  gw_q_res(k) = 0.
+              end if
+
+              !! Almendinger/Ulrich: remove ground water flow from per-HRU shallow aquifer storage
+              if (shallst(k) >= gwqmn(k)) then
+                shallst(k) = shallst(k) - gw_q_res(k)
+                if (shallst(k) < gwqmn(k)) then
+                   gw_q_res(k) = gw_q_res(k) - (gwqmn(k) - shallst(k))
+                   shallst(k) = gwqmn(k)
+                end if
+              else
+                gw_q_res(k) = 0.
+              end if
+                 
+              !! Almendinger/Ulrich: convert gw_q_res mm to m^3
+              !! resgwflwo holds subbasin wide return flow; calc'd from each HRU's resultant return flow
+              resgwflwo = resgwflwo + gw_q_res(k) * hru_ha(k) * 10.
+                              
+              !! Almendinger/Ulrich: END NEW CODE
+              !! *********************************************************************************************************                            
             end if
           end do
         end if
+
+        !! Almendinger/Ulrich:  resnut MOVED to after seepage calc
+        !! Perform reservoir nutrient balance
+        call resnut
+        
+        !! Almendinger/Ulrich-- lastly, combine res gw return flow with res surface outflow 
+        resflwo = resflwo + resgwflwo
 
         !! set values for routing variables
         varoute(1,ihout) = 0.           !!undefined

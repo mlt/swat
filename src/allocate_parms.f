@@ -1418,6 +1418,55 @@
       allocate (lat_orgn(mhru))
       allocate (lat_orgp(mhru))
 
+!! **************************************************************
+!! Almendinger/Ulrich: NEW qdr arrays for pond,wetland and reservoir changes
+      allocate (qdr_wet(mhru))
+      allocate (qdr_pnd(mhru))
+      
+      allocate (sedyld_wet(mhru))
+      allocate (sedorgn_wet(mhru))
+      allocate (surqno3_wet(mhru))
+      allocate (latno3_wet(mhru))
+      allocate (no3gw_wet(mhru))
+      allocate (sedorgp_wet(mhru))
+      allocate (sedminpa_wet(mhru))
+      allocate (sedminps_wet(mhru))
+      allocate (surqsolp_wet(mhru))
+      allocate (minpgw_wet(mhru))
+      
+      allocate (sanyld_wet(mhru))
+      allocate (silyld_wet(mhru))
+      allocate (clayld_wet(mhru))
+      allocate (sagyld_wet(mhru))
+      allocate (lagyld_wet(mhru))
+
+      allocate (sedyld_pnd(mhru))
+      allocate (sedorgn_pnd(mhru))
+      allocate (surqno3_pnd(mhru))
+      allocate (latno3_pnd(mhru))
+      allocate (no3gw_pnd(mhru))
+      allocate (sedorgp_pnd(mhru))
+      allocate (sedminpa_pnd(mhru))
+      allocate (sedminps_pnd(mhru))
+      allocate (surqsolp_pnd(mhru))
+      allocate (minpgw_pnd(mhru))
+
+      allocate (sanyld_pnd(mhru))
+      allocate (silyld_pnd(mhru))
+      allocate (clayld_pnd(mhru))
+      allocate (sagyld_pnd(mhru))
+      allocate (lagyld_pnd(mhru))                 
+  
+      allocate (rchrg_wet(mhru))
+      allocate (rchrg_pnd(mhru))      
+      
+      allocate (gw_q_wet(mhru))
+      allocate (gw_q_pnd(mhru))
+      allocate (gw_q_res(mhru))
+      allocate (sepmm_res(mhru))            
+      
+!! END Almendinger/Ulrich
+!! **************************************************************  
 	  
       call zero0
       call zero1
