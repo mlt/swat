@@ -1,0 +1,24 @@
+#+TITLE: readme
+
+* About SWAT
+
+From [[http://swat.tamu.edu/][official site]]:
+
+#+BEGIN_QUOTE
+SWAT is a public domain model actively supported by the USDA
+Agricultural Research Service at the Grassland, Soil and Water
+Research Laboratory in Temple, Texas, USA.
+#+END_QUOTE
+
+* About this repository
+
+This is *not* an official repository for SWAT. It exists mostly
+because of the lack of official _public_ one.
+
+This repository is an attempt to bring various revisions under one
+umbrella to make it easier to track code changes and keep up with
+newer revisions. [[http://www.cmake.org/][CMake build system]] is used to make compiler and
+platform independent build process. Testing is mostly done with
+gfortran compiler on MS Windows and Ubuntu GNU/Linux.
+
+More information can be found in [[https://github.com/mlt/swat/wiki][wiki]].
