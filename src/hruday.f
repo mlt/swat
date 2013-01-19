@@ -215,7 +215,7 @@
       pdvas(15) = shallst(j)
       pdvas(16) = deepst(j)
       pdvas(17) = surfq(j)
-      pdvas(18) = qday + tloss
+      pdvas(18) = qday
       pdvas(19) = tloss
       pdvas(20) = latq(j)
       pdvas(21) = gw_q(j)
@@ -282,7 +282,10 @@
 !    tileno3 - output.hru
       pdvas(75) = tileno3(j)
 !    latno3 - output.hru
-      pdvas(76) = latno3(j)   
+      pdvas(76) = latno3(j) 
+!    groundwater deep
+      pdvas(77) = gw_qdeep(j)
+      pdvas(78) = latq(j) - lpndloss - lwetloss
 
       ii = icl(iida)
       
@@ -306,7 +309,7 @@
      &      hruno(j), sb, nmgt(j), i_mo, icl(iida), iyr, hru_km(j),     &
      &       (pdvs(ii), ii = 1, itots)
 1002  format (a4,i5,1x,a5,a4,i5,1x,i4,1x,i2,1x,i2,1x,i4,1x,e10.5,       &
-     & 66f10.3,1x,e10.5,1x,e10.5,8e10.3)
+     & 66f10.3,1x,e10.5,1x,e10.5,8e10.3,2f10.3)
       
 !!    added for binary files 3/25/09 gsm line below and write (33333
 	      if (ia_b == 1) then
@@ -323,7 +326,7 @@
      &      sb, nmgt(j), i_mo, icl(iida), iyr, hru_km(j),               &
      &      (pdvs(ii), ii = 1, itots), iyr
 1003  format(a4,i5,1x,a5,a4,i5,1x,i4,1x,i2,1x,i2,1x,i4,1x,e10.5,66f10.3,&
-     &1x,e10.5,1x,e10.5,8e10.3,1x,i4)
+     &1x,e10.5,1x,e10.5,8e10.3,f10.3,1x,i4)
         end if
       else
         if (iscen == 1 .and. isproj == 0) then
@@ -353,7 +356,7 @@
       return
 
 1000  format (a4,i5,1x,a5,a4,i5,1x,i4,1x,i4,e10.5,66f10.3,1x,
-     *e10.5,1x,e10.5,8e10.3,1x,i4)
+     *e10.5,1x,e10.5,8e10.3,2f10.3,1x,i4)
 1001  format (a4,i5,1x,a5,a4,i5,1x,i4,1x,i4,e10.5,66f10.3,1x,
-     *e10.5,1x,e10.5,8e10.3)
+     *e10.5,1x,e10.5,8e10.3,2f10.3)
       end
