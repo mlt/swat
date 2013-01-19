@@ -14,6 +14,7 @@ set( SWAT_SRCS
   autoirr.f
   aveval.f
   bacteria.f
+  biofilm.f
   biozone.f
   bmp_det_pond.f
   bmp_ri_pond.f
@@ -81,6 +82,7 @@ set( SWAT_SRCS
   hrupondhr.f
   hruyr.f
   hydroinit.f
+  icl.f
   impnd_init.f
   impndaa.f
   impndday.f
@@ -212,7 +214,6 @@ set( SWAT_SRCS
   rthsed.f
   rtmusk.f
   rtout.f
-  rtover.f
   rtpest.f
   rtsed.f
   rtsed_Molinas_Wu.f
@@ -271,6 +272,7 @@ set( SWAT_SRCS
   transfer.f
   tstr.f
   ttcoef.f
+  ttcoef_wway.f
   urb_bmp.f
   urban.f
   urbanhr.f
