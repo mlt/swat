@@ -5,43 +5,43 @@ set( SWAT_SRCS
   albedo.f
   allocate_parms.f
   alph.f
-  analyse.f
   anfert.f
   apex_day.f
   apply.f
   ascrv.f
   atri.f
   aunif.f
-  autocal.f
   autoirr.f
-  automet.f
   aveval.f
   bacteria.f
-  batchin.f
-  batchmain.f
-  bayes.f
   biozone.f
+  bmp_det_pond.f
+  bmp_ri_pond.f
+  bmp_sand_filter.f
+  bmp_sed_pond.f
+  bmp_wet_pond.f
+  bmpfixed.f
+  bmpinit.f
   buffer.f
   burnop.f
-  calresidu.f
   canopyint.f
   caps.f
   carbon_new.f
-  changepar.f
   chkcst.f
   clgen.f
   clicon.f
   command.f
   conapply.f
   confert.f
-  copyfile.f
-  countobs.f
   crackflow.f
   crackvol.f
   curno.f
   dailycn.f
   decay.f
+  depstor.f
+  distrib_bmps.f
   dormant.f
+  drains.f
   dstn1.f
   ee.f
   eiusle.f
@@ -55,19 +55,14 @@ set( SWAT_SRCS
   filter.f
   filtw.f
   finalbal.f
-  functn.f
-  gasdev.f
   gcycl.f
-  getallo2.f
   getallo.f
-  getpnt2.f
-  getpnt.f
-  goc.f
+  getallo2.f
   grass_wway.f
   graze.f
   grow.f
-  gwmod.f
   gw_no3.f
+  gwmod.f
   gwnutr.f
   h2omgt_init.f
   harvestop.f
@@ -83,17 +78,17 @@ set( SWAT_SRCS
   hruday.f
   hrumon.f
   hrupond.f
+  hrupondhr.f
   hruyr.f
   hydroinit.f
+  impnd_init.f
   impndaa.f
   impndday.f
-  impnd_init.f
   impndmon.f
   impndyr.f
-  indexx.f
-  irrigate.f
   irr_rch.f
   irr_res.f
+  irrigate.f
   irrsub.f
   jdt.f
   killop.f
@@ -114,18 +109,12 @@ set( SWAT_SRCS
   nrain.f
   nup.f
   nuts.f
-  oat.f
-  objfunctn.f
   openwth.f
   operatn.f
-  orgncswat.f
   orgn.f
-  parasolc.f
-  parasol.f
-  parasoli.f
-  parasolo.f
-  parasolu.f
-  parstt2.f
+  orgncswat.f
+  origtile.f
+  ovr_sed.f
   percmacro.f
   percmain.f
   percmicro.f
@@ -139,13 +128,15 @@ set( SWAT_SRCS
   plantop.f
   pmeas.f
   pminrl.f
+  pminrl2.f
   pond.f
+  pondhr.f
   pothole.f
+  potholehr.f
   print_hyd.f
   psed.f
   qman.f
   ran1.f
-  ranked.f
   rchaa.f
   rchday.f
   rchinit.f
@@ -155,7 +146,6 @@ set( SWAT_SRCS
   reachout.f
   readatmodep.f
   readbsn.f
-  readchan.f
   readchm.f
   readcnst.f
   readfcst.f
@@ -167,7 +157,6 @@ set( SWAT_SRCS
   readinpt.f
   readlup.f
   readlwq.f
-  readmetf.f
   readmgt.f
   readmon.f
   readops.f
@@ -177,6 +166,8 @@ set( SWAT_SRCS
   readpnd.f
   readres.f
   readrte.f
+  readru.f
+  readsdr.f
   readsepticbz.f
   readseptwq.f
   readsno.f
@@ -195,19 +186,18 @@ set( SWAT_SRCS
   recmon.f
   recyear.f
   regres.f
-  rerun.f
-  rerunfile.f
-  rerunps.f
+  res.f
   resbact.f
   resetlu.f
-  res.f
+  reshr.f
   resinit.f
   resnut.f
-  response.f
   rewind_init.f
   rhgen.f
   rootfr.f
   route.f
+  routels.f
+  routeunit.f
   routres.f
   rsedaa.f
   rseday.f
@@ -217,27 +207,24 @@ set( SWAT_SRCS
   rtday.f
   rteinit.f
   rthmusk.f
-  rthourly.f
   rthpest.f
+  rthr.f
   rthsed.f
   rtmusk.f
   rtout.f
   rtover.f
   rtpest.f
-  rtsed_bagnold.f
   rtsed.f
-  rtsed_kodatie.f
   rtsed_Molinas_Wu.f
+  rtsed_bagnold.f
+  rtsed_kodatie.f
   rtsed_yangsand.f
-  sample1.f
-  sample.f
+  ruallo.f
   sat_excess.f
-  saveconc.f
   save.f
-  scestat.f
+  saveconc.f
+  sched_mgt.f
   schedule_ops.f
-  sensin.f
-  sensmain.f
   sim_initday.f
   sim_inityr.f
   simulate.f
@@ -250,20 +237,13 @@ set( SWAT_SRCS
   soil_write.f
   solp.f
   solt.f
-  sort1.f
-  sort3.f
-  sorteer2.f
-  sorteer3.f
-  sorteer4.f
-  sorteer5.f
-  sorteer6.f
-  sorteer.f
   std1.f
   std2.f
   std3.f
   stdaa.f
   storeinitial.f
   structure.f
+  sub_subbasin.f
   subaa.f
   subbasin.f
   subday.f
@@ -273,9 +253,6 @@ set( SWAT_SRCS
   subyr.f
   sumhyd.f
   sumv.f
-  sunglasr.f
-  sunglass.f
-  sunglasu.f
   surface.f
   surfst_h2o.f
   surfstor.f
@@ -285,9 +262,6 @@ set( SWAT_SRCS
   sweep.f
   swu.f
   tair.f
-  telobjre.f
-  telobs.f
-  telpar.f
   tgen.f
   theta.f
   tillfactor.f
@@ -297,38 +271,46 @@ set( SWAT_SRCS
   transfer.f
   tstr.f
   ttcoef.f
-  urban.f
   urb_bmp.f
+  urban.f
+  urbanhr.f
   varinit.f
   vbl.f
   virtual.f
   volq.f
-  vrval.f
   washp.f
   watbal.f
-  watqual2.f
+  water_hru.f
   watqual.f
+  watqual2.f
   wattable.f
   watuse.f
   weatgn.f
   wetlan.f
   wmeas.f
   wndgen.f
-  writeaa.f
   writea.f
+  writeaa.f
   writed.f
   writem.f
-  writeswatfile.f
-  writeswatmain.f
-  xisquare.f
-  xiunc.f
   xmon.f
   ysed.f
   zero0.f
   zero1.f
   zero2.f
+  zero_urbn.f
   zeroini.f
-  )
+)
+
+# -e80 for ifort???
+set_source_files_properties(
+  bmp_det_pond.f
+  bmpinit.f
+  ovr_sed.f
+  percmain.f
+  readbsn.f
+  rthsed.f
+  PROPERTIES COMPILE_FLAGS -ffixed-line-length-79)
 
 add_executable(swat ${SWAT_SRCS})
 set(PATCH ${CPACK_PACKAGE_VERSION_PATCH})
