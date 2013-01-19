@@ -1,6 +1,7 @@
 cmake_minimum_required(VERSION 2.8)
 
 set( SWAT_SRCS
+  NCsed_leach.f90
   addh.f
   albedo.f
   allocate_parms.f
@@ -28,6 +29,8 @@ set( SWAT_SRCS
   canopyint.f
   caps.f
   carbon_new.f
+  carbon_zhang2.f90
+  cfactor.f
   chkcst.f
   clgen.f
   clicon.f
@@ -58,12 +61,12 @@ set( SWAT_SRCS
   finalbal.f
   gcycl.f
   getallo.f
-  getallo2.f
   grass_wway.f
   graze.f
   grow.f
   gw_no3.f
   gwmod.f
+  gwmod_deep.f
   gwnutr.f
   h2omgt_init.f
   harvestop.f
@@ -76,7 +79,7 @@ set( SWAT_SRCS
   hmeas.f
   hruaa.f
   hruallo.f
-  hruday.f
+  hruday.f90
   hrumon.f
   hrupond.f
   hrupondhr.f
@@ -162,7 +165,6 @@ set( SWAT_SRCS
   readmgt.f
   readmon.f
   readops.f
-  readparmfile.f
   readpest.f
   readplant.f
   readpnd.f
@@ -220,7 +222,6 @@ set( SWAT_SRCS
   rtsed_bagnold.f
   rtsed_kodatie.f
   rtsed_yangsand.f
-  ruallo.f
   sat_excess.f
   save.f
   saveconc.f
@@ -308,11 +309,16 @@ set( SWAT_SRCS
 set_source_files_properties(
   bmp_det_pond.f
   bmpinit.f
+  modparm.f
   ovr_sed.f
   percmain.f
   readbsn.f
   rthsed.f
   PROPERTIES COMPILE_FLAGS -ffixed-line-length-79)
+
+set_source_files_properties(
+  carbon_zhang2.f90
+  PROPERTIES COMPILE_FLAGS -ffree-line-length-none)
 
 add_executable(swat ${SWAT_SRCS})
 set(PATCH ${CPACK_PACKAGE_VERSION_PATCH})
