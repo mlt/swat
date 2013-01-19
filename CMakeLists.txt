@@ -2,8 +2,8 @@ cmake_minimum_required(VERSION 2.8)
 
 project(swat Fortran)
 
-set(CPACK_PACKAGE_VERSION_MAJOR 2009)
-set(CPACK_PACKAGE_VERSION_MINOR 528)
+set(CPACK_PACKAGE_VERSION_MAJOR 2012)
+set(CPACK_PACKAGE_VERSION_MINOR 535)
 set(CPACK_PACKAGE_VERSION_PATCH "1")
 
 option(USE_GPROF "Profile the project using gprof" OFF)
