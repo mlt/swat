@@ -401,7 +401,7 @@
             sol_LMN(j,i)=.1*sol_LMC(j,i)                            
             sol_LSC(j,i)=.42*sol_LS(j,i)                              
             sol_LSLC(j,i)=.8*sol_LSC(j,i)                            
-            sol_LSLNC(j,i)=.2*sol_LSC(j,i)                          
+            sol_LSLNC(j,i)=.2*sol_LSC(j,i)
             sol_LSN(j,i)=sol_LSC(j,i)/150.                          
             !sol_WOC(j,ihru)=sol_WOC(j,ihru)+sol_LSC(j,ihru)+sol_WLMC(j,ihru)
             sol_WOC(j,i)=sol_WOC(j,i)+sol_LSC(j,i)+sol_LMC(j,i)        
