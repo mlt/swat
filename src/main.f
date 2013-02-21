@@ -54,11 +54,11 @@
 
       use parm
       implicit none
-      prog = "SWAT Nov 14 2012    VER 2012/Rev 582"
+      prog = "SWAT Jan 28 2013    VER 2012/Rev 585"
 
       write (*,1000)
  1000 format(1x,"               SWAT2012               ",/,             &
-     &          "               Rev. 582               ",/,             &
+     &          "               Rev. 585               ",/,             &
      &          "      Soil & Water Assessment Tool    ",/,             &
      &          "               PC Version             ",/,             &
      &          " Program reading from file.cio . . . executing",/)
