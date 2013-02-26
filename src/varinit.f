@@ -321,12 +321,13 @@
         wetsedo = 0.
         wetsep = 0.
         
+        if (ievent < 3) return
 	!! urban modeling by J.Jeong
-	  sedprev = 0.
-	  ubnrunoff = 0.
-	  irmmdt = 0.
+	!  sedprev = 0.          ! initialized in surfstor.f
+	!  ubnrunoff = 0.        ! reset in sim_initday.f
+	!  irmmdt = 0.           ! reset in surface.f
         hhsedy = 0.
-        ubntss = 0.
+        !ubntss = 0.             ! reset in sim_initday.f
 
        return
        end

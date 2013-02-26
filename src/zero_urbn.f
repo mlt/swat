@@ -17,7 +17,7 @@
       iabstr = 0.
       
 !!	subdaily sediment modeling by J.Jeong
-	hhsedy=0.
+!	hhsedy=0.               ! reset in varinit.f
 	spl_eros = 0.
 	rill_mult = 0.
 	eros_expo = 0.
