@@ -255,11 +255,10 @@
             !! Limit PSP range
             if (psp <.05) then
               psp = 0.05
-            end if
-	      if (psp > 0.9) then
+	      else if (psp > 0.9) then
               psp = 0.9
             end if
-	    end if
+            end if
 	    
         sol_actp(j,i) = sol_solp(j,i) * (1. - psp) / psp
 

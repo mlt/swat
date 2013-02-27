@@ -238,7 +238,7 @@
                   call operatn
                   dorm_flag = 0
                endif
-  !              nop(ihru) = nop(ihru) + 1
+               nop(ihru) = nop(ihru) + 1
           
                 if (nop(ihru) > nopmx(ihru)) then
                   nop(ihru) = 1
@@ -301,7 +301,7 @@
               call operatn
               dorm_flag = 0
             end if
-   !         nop(j) = nop(j) + 1
+            nop(j) = nop(j) + 1
           
             if (nop(j) > nopmx(j)) then
               nop(j) = 1
