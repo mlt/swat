@@ -357,7 +357,8 @@
          rch_dox(jrch) = 0.
          rch_dox(jrch) = o2con + (uu + vv - ww - xx - yy - zz) * tday
          if (rch_dox(jrch) < 1.e-6) rch_dox(jrch) = 0.
-	     if (rch_dox(jrch) > dcoef * o2con) rch_dox(jrch) = dcoef * o2con
+         if (rch_dox(jrch) > dcoef * o2con)
+     $        rch_dox(jrch) = dcoef * o2con
 !! end oxygen calculations
 
 !! nitrogen calculations
