@@ -192,7 +192,6 @@
       if (irte == 1) then
         write (24,1013)
         do j = 1, subtot
-          xmk = 0.
           xkm = phi(10,j) * msk_co1 + phi(13,j) * msk_co2
           xch_l1 = 0.
           xch_l1 = ch_l1(hru1(j)) / hru_fr(hru1(j))
