@@ -73,6 +73,8 @@
       real :: sptq,sptbodin,spttssconc,spttnconc,sptnh4conc,sptno3conc
       real :: sptno2conc,sptorgnconc,spttpconc,sptminp,sptorgp,sptfcoli
 
+      integer :: idspttype, ii
+
       isnum = 0
       eof = 0
 

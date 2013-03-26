@@ -111,6 +111,7 @@
       use parm
 
       integer :: jrch,nn,ii
+      real :: aaa, vc, Qman
       real :: xkm, det, yy, c1, c2, c3, c4, wtrin, p, vol, c, rh
       real :: topw,msk1,msk2,detmax,detmin,qinday,qoutday
 	real :: volrt, maxrt, adddep, addp, addarea

@@ -37,6 +37,7 @@
       integer, intent (in) :: j
  
       real :: v6
+      real :: Aunif
 
       !! Generate wind speed !!
       v6 = 0.

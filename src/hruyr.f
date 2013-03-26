@@ -154,6 +154,7 @@
       integer :: j, sb, ii, iflag
       real, dimension (mhruo) :: pdvas, pdvs
       character (len=4) :: cropname
+      integer :: idplant
 
       do j = 1, nhru
         iflag = 0

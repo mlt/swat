@@ -128,6 +128,8 @@
       
 !!   change per JGA 8/31/2011 gsm PUT YIELD IN modparm.f
 !!      real :: wur, hiad1, yield, yieldn, yieldp, yldpst
+      real :: ff1, ff2, orgc_f, RLN, RLR, xx
+      integer :: l
       real :: wur, hiad1, yieldn, yieldp, yldpst
 	real :: resnew, rtresnew 
 

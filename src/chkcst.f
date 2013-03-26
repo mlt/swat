@@ -10,8 +10,9 @@ c            = 1  violation
 c     nopt = number of optimizing variables
 c     ii = the ii'th variable of the arrays x, bl, and bu
 c
-      implicit real*8 (a-h,o-z)
-      dimension xi(nopt),bl(nopt),bu(nopt)
+      integer, intent(in) :: nopt
+      integer :: ii, ibound
+      real, dimension(nopt) :: xi, bl, bu
 c
       ibound = -1
 c

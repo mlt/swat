@@ -42,6 +42,7 @@
 
       integer :: j
       real :: cnv
+      real :: sub_ha
 
       j = 0
       j = ihru

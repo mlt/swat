@@ -232,6 +232,7 @@
       real :: thbc1 = 1.083, thbc2 = 1.047, thbc3 = 1.047, thbc4 = 1.047
       real :: thrk1 = 1.047, thrk2 = 1.024, thrk3 = 1.024, thrk4 = 1.060
 !      real :: thrk5 = 1.047, thrk6 = 1.0, thrs6 = 1.024, thrs7 = 1.0
+      real :: cbodrch, coef, dcoef, doxrch, Theta
 
       jrch = 0
       jrch = inum1

@@ -170,6 +170,7 @@
       real, parameter :: rtoaf = 0.50
       integer :: j, ly
       real :: tsno3, tpno3, dwfert, xx, targn, tfp
+      real :: orgc_f, RLN, X1, X10, X8, XXX, XZ, YY, YZ, ZZ
 
       j = 0
       j = ihru

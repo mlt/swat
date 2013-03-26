@@ -50,6 +50,7 @@
 
       integer :: j
       real :: ab, xa, preceff, ajp, xb, pkrf, pkrf30
+      real :: Expo, Atri
 
       j = 0
       j = ihru

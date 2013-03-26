@@ -55,6 +55,7 @@
       integer :: k, iyp, idap, l, inum3sprev
       real :: rhdbsb
       real, dimension (mrg) :: rhmeas
+      real :: tmpmean, Ee
 
       !! initialize variables for the day
       rhmeas = 0.

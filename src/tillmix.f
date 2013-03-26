@@ -129,6 +129,7 @@
       real, intent (in) :: bmix
       integer :: l, k, nl
       real :: emix, dtil, rrns 
+      real :: dg
       real :: thtill(mlyr), smix(11+npmx)
 
       emix = 0.

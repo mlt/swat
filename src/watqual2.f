@@ -236,6 +236,7 @@
 !      real :: thrk5 = 1.047, thrk6 = 1.0, thrs6 = 1.024, thrs7 = 1.0
 	real  ::   dalgae, dchla, dorgn, dnh4, dno2, dno3,dorgp,dsolp
       real  ::   dbod, ddisox  
+      real :: hh, o2con2, o2proc, setl, Theta
 
       jrch = 0
       jrch = inum1

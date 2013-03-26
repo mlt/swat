@@ -101,6 +101,7 @@
 
       integer :: nly, j
       real :: xx, sumpor, dg, pormm
+      real :: cl, drpor, sa, si
 
       nly = 0
     

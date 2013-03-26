@@ -129,6 +129,7 @@
       integer, intent (in) :: k
       real :: vol, sed, pndsa, xx, targ, tpco, phosk, nitrok, chlaco
       integer :: iseas
+      real :: susp, trappnd, velofl
 	real :: san, sil, cla, sag, lag, inised, finsed,setsed,remsetsed
 
 

@@ -43,6 +43,7 @@
       integer, intent (in out) :: at4i
       real :: u3, rn, y, b1, b2, x1, xx, yy, amn
       real :: atri
+      real :: Aunif
 
       u3 = 0.
       rn = 0.

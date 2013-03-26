@@ -116,6 +116,7 @@
       character (len=13) :: resdayo, resmono
       integer :: eof, mon, j
       real :: resdif, targ, lnvol, res_d50
+      real :: res_d50mm
 
 !!    initialize local variables
       resdayo = ""

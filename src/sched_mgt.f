@@ -32,6 +32,9 @@
 
       use parm
 
+      real :: biomass, fr_curb, husc, thenharveff
+      integer :: j, ihv_gbm, ncrp
+
       j = ihru
       
       select case (mgtop(nop(j),j))

@@ -156,6 +156,7 @@
 
       integer :: j, l, it
       real :: gc, gc1, swf, frt_t, xx
+      real :: orgc_f, RLN, X1, X10, X8, XXX, XZ, YY, YZ, ZZ
 
       j = 0
       j = ihru

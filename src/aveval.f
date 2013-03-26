@@ -1,6 +1,6 @@
         subroutine aveval(itel,ave)
-		implicit real*8 (a-h,o-z)
 
+        integer :: ii
         integer itel
         real*8 sumdat, sumout, ave, cal1, cal2
         sumdat=0.

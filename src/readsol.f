@@ -80,6 +80,7 @@
       integer :: j, nly, eof            !claire: jj, n, and flag are not used 12/02/09
 !      real :: xx, plt_zmx, yy
       real :: plt_zmx                   !Claire, xx and yy are not used 12/2/09
+      real :: a, b, c, d, dep_new, nota
 
 !!    initialize local variables
       nly = 0

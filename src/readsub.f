@@ -139,6 +139,8 @@
 	  character (len=13) :: sdrfile, ltcfile
       integer :: eof, mon, j, jj, ip, if, ir
       real :: ssnoeb(10), sno_sub, ch_ls, sumebfr
+      integer :: ib, ils, k, kk
+      real :: sdrift
 
       wgnfile = ""
       pndfile = ""

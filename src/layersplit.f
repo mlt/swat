@@ -1,6 +1,8 @@
       subroutine layersplit(dep_new)
 
       use parm
+      integer :: jj
+      real :: x, xx
       integer nly,n,j
 	integer :: flag
 	real, intent(in):: dep_new

@@ -63,6 +63,7 @@
       integer :: j, jj
       real :: sro, ssfnlyr, percnlyr, vv, vno3, co
       real :: cosurf, nloss
+      real :: ww
 
       j = 0
       j = ihru

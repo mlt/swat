@@ -75,6 +75,8 @@
   
       integer :: j, k
       real :: resnew
+      real :: ff1, ff2, orgc_f, RLN, RLR, rtresnew, XX, yieldn
+      integer :: l
       
       !!by zhang
       !!====================

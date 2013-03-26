@@ -173,6 +173,9 @@
       integer :: j, l, it
       real :: dmi, dmii, gc, gc1, swf, frt_t, xx
       real :: LMF, LSF
+      real :: BLG1, BLG2, BLG3, CLG, orgc_f
+      real :: resnew, resnew_ne, resnew_n, RLN, RLR, sf, sol_min_n
+      real :: X1, X10, X8, XXX, XZ, YY, YZ, ZZ
 
       j = 0
       j = ihru

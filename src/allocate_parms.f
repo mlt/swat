@@ -49,6 +49,8 @@
 
       use parm
 
+      integer :: imho, itempa, mxsubch
+
 !! initialize variables    
       mvaro = 33
       mhruo = 78

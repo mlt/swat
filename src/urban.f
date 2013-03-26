@@ -106,6 +106,7 @@
 
       real :: cod, sus_sol, tn, tp, urbk, turo, dirto, durf, rp1, dirt
       integer :: j
+      real :: tno3, xx, Regres
 
       j = 0
       j = ihru

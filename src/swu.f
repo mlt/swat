@@ -98,6 +98,7 @@
       integer :: j, k, ir
       real, dimension(mlyr) :: wuse
       real :: sum, xx, gx, reduc, sump
+      real :: pl_aerfac, satco, scparm
 
       j = 0
       j = ihru

@@ -96,6 +96,7 @@
 
       integer :: jres
       real :: vol, sed, vvr, targ, xx, flw
+      real :: susp, trapres, velofl
 	real :: san,sil,cla,sag,lag,gra,ndespill
 	real :: inised, finsed, setsed, remsetsed
  

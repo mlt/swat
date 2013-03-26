@@ -73,6 +73,10 @@
       use parm
       real :: chflow_m3, sf_area, surq_remove, sf_sed ,sed_remove,vc,
      & chflow_day
+      real :: cych, cyin, deg, dep, depnet, p, rh, sed_frac, sedin
+      real :: sedint, sedout, sedtrap, sf_depth, surq_frac, xrem
+      real :: Qman
+      integer :: j, k
 !!	set variables
       j = ihru
 

@@ -112,6 +112,7 @@
       integer :: nly, j, jj, n
       real :: xx, dg, wt1, zdst, soldepth, sumno3, sumorgn, summinp
       real :: sumorgp, solpst, soil_TP, labfrac,solp
+      real :: actp, RTN0, sol_cmass, sol_thick, ssp
       
       !!by zhang
       !!=============

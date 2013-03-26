@@ -100,6 +100,7 @@
       use parm
 
       integer :: j, ib
+      integer :: ii
       real :: sum, smp, smfac, smleb
       real :: xx, snocov 
 

@@ -114,6 +114,7 @@
 
       integer, intent (in) :: mdays
       integer :: j
+      integer :: ii
       real, dimension (mrcho) :: pdvar, pdvr
       real, dimension (11) :: srch_av
 

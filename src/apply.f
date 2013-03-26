@@ -65,6 +65,7 @@
 
       integer :: j, kk, k, jj
       real :: xx, gc
+      integer :: nly
 
       j = 0
       j = ihru

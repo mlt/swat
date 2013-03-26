@@ -94,6 +94,7 @@
       character (len=80) :: titldum
       integer :: eof
       real :: xm, sin_sl, epcohru, escohru
+      real :: xx
 
       eof = 0
       escohru = 0.

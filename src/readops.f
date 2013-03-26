@@ -82,6 +82,8 @@
 	integer :: eof
 	integer :: mon, day, mgt_op, mgt2i, mgt1i
 	real :: mgt3,mgt4,mgt5,mgt6,mgt7,mgt8,mgt9
+        integer :: iyear, jdt
+        real :: year
       
 	
 	

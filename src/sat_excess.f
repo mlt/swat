@@ -60,6 +60,8 @@
 
       integer :: j, j1, ii, isp
       real:: ul_excess,qlyr,pormm,rtof
+      integer :: ly, nn
+      real :: qvol, xx
 
       j = 0
       j = ihru

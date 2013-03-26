@@ -118,6 +118,8 @@
       character (len=13) :: hour_in, resfile, lwqfile, rtefile, swqfile
       character (len=13) :: subfile, auto_in , rufile
       integer :: ii, eof
+      integer :: iijj, jjii
+      real :: xyz
 
       character (len=3), dimension (mhyd) :: char6, char7, char8
       char6 = "   "

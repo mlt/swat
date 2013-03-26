@@ -8,6 +8,8 @@
 
       character (len=80) :: titldum
       integer :: ii
+      integer :: j
+      real :: orig_tnylda
 
 !! reset output arrays/variables
       aairr = 0.

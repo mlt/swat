@@ -82,6 +82,8 @@
 
       integer :: j, l
       real :: t_ch, scmx, xx
+      integer :: isb
+      real :: q, ql, rto, sumq, tb, tp, xi
 
       do j = 1, nhru
 

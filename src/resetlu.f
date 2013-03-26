@@ -31,7 +31,7 @@
 
       use parm
 	character(len=80) :: titldum
-
+      integer :: hru, j, mon
       open (123,file=fname(no_lup))
       read (123, 5101) titldum
       do j = 1, mhru

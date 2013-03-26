@@ -27,6 +27,7 @@
       use parm
 
       integer :: j
+      integer :: ii
 
       do j = 1, subtot
           rchyro(58,j) = rchyro(58,j)/Real(idlast)

@@ -58,6 +58,7 @@
       use parm
 
       integer :: sb, ii
+      integer :: icl
       real :: sub_ha
       real, dimension (msubo) :: pdvab, pdvb
 

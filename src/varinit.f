@@ -195,6 +195,7 @@
       use parm
 
       integer :: j, ly
+      integer :: ii
 
       j = 0
       j = ihru

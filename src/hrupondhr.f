@@ -105,6 +105,7 @@
       use parm
 
       integer :: j
+      integer :: k
       real :: cnv, pndsa, xx, yy
 
       j = 0

@@ -113,6 +113,7 @@
       real :: esd, etco, effnup
       real :: no3up, es_max, eos1, xx, cej, eaj, pet, esleft
       real :: sumsnoeb, evzp, eosl, dep, evz, sev
+      real :: Expo
 
       j = 0
       j = ihru

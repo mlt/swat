@@ -34,6 +34,8 @@
 
       use parm
 
+      real , intent(in) :: d
+      real :: dmod_m, xyz
       integer :: j
       j = 0
       j = ihru

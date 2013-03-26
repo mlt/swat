@@ -57,6 +57,7 @@
  
       real :: vv, rhm, yy, uplm, blm
       real :: rhmo, tmpmean
+      real :: Ee, Atri
 
       !! Climate Paramenters required for Penman-Monteith !!
 

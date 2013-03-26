@@ -143,6 +143,7 @@
 	real :: san, sil, cla, sag, lag, inised, finsed,setsed,remsetsed
       real :: wetsano, wetsilo, wetclao, wetsago, wetlago
       real :: qdayi, latqi
+      real :: chlaco, yy
       
 
       j = 0

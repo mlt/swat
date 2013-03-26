@@ -8,6 +8,7 @@
 	real :: sol_thick(sol_nly(ihru))
 	real :: cum_rd, cum_d, cum_rf, x1, x2
 	integer :: k, l, jj
+        real :: a,b, c, d, xx, xx1, xx2
 	
 	jj = ihru
       

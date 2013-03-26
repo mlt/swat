@@ -106,6 +106,7 @@
       real :: cod, sus_sol, tn, tp, urbk, dirto, qdt
 	real*8 :: dirt
       integer :: j, k 
+      real :: tno3
 
       j = 0
       j = ihru

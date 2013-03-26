@@ -59,6 +59,7 @@
       use parm
 
       integer :: j
+      integer :: ii
       real :: xx, vap
 
       j = 0
