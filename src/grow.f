@@ -158,6 +158,8 @@
       integer :: j
       real :: delg, par, ruedecl, beadj, reg, f, ff, deltalai
       real :: laimax, rto
+      real :: biomxyr
+      integer :: idp
 
       j = 0
       j = ihru

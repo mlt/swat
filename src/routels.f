@@ -28,6 +28,11 @@
 !!    ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ 
 !!
       use parm
+      integer, intent(in) :: iru_sub
+      real :: cy, dakm, dep, dr, dr_er, dstor, frac, gwqrunon
+      integer :: ii, jj, kk, lyr
+      real :: orgn, orgp, qs, sed, slbp, surfqout
+      real :: trancap, trt, vs, xslat, xx
       real :: latqout, gwqout, latqrunon, surfqrunon, latqlyr
       real :: no3, nh3
 

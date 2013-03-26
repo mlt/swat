@@ -137,6 +137,7 @@
       use parm
 
       integer :: k, inum3sprev, npcpbsb, ii, iyp, idap, ib
+      integer :: l
       real :: tmxbsb, tmnbsb, rbsb, rhdbsb, rabsb, u10bsb, rmxbsb
       real :: daylbsb,  fradbsb(nstep),tdif, pdif, ratio
 !     real, dimension (:), allocatable :: rhrbsb, rstpbsb

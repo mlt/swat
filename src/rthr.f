@@ -87,6 +87,7 @@
       integer :: jrch, ii, inhyd
       real :: wtrin, c, p, scoef
       real :: vol, topw
+      real :: Qman
 
 
       jrch = 0

@@ -100,6 +100,7 @@
       use parm
 
       integer :: j, k
+      integer :: j1
       real :: pstsum
 
 

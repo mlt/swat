@@ -91,6 +91,7 @@
       use parm
 
       integer :: j, j1, nn, k
+      real :: d, por_air, sumqtile, sw_del, wat, wt_del, xx, yy
 
       j = 0
       j = ihru

@@ -134,6 +134,7 @@
       
       real :: hvol(10)
       integer :: sb
+      integer :: ii, kk
  
       sb = hru_sub(ihru)
       ri_pmpvol = 0; ri_totpvol = 0

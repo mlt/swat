@@ -112,6 +112,7 @@
       use parm
 
       integer :: j, k
+      real :: reduc
 
       j = 0
       j = ihru

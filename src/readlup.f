@@ -32,6 +32,7 @@
       use parm
       character*13 fnam
       integer :: eof
+      integer :: iday, iyear, jdt
 
 !!    read lup file     
       do               

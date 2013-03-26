@@ -42,6 +42,8 @@
       integer :: j,sb,kk
       real :: precip_fr
       real :: irfr,hruvirr
+      integer :: ii, ib
+      real :: hruirrday
 
       j = 0
       j = ihru

@@ -441,6 +441,7 @@
       use parm
 
       integer :: j, k
+      integer :: ii
       real :: cnv
 
       j = 0

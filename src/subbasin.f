@@ -134,6 +134,8 @@
 
       integer :: j,sb,kk
       real :: tmpk, d, gma, ho, pet_alpha, aphu, phuop
+      integer :: i_wtrhru, ihout1, iru_sub
+      real :: ovs, ovsl, sumdaru, sumk, xx
 
       ihru = 0
       ihru = hru1(inum1) 

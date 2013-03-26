@@ -73,6 +73,7 @@
       integer, intent (in) :: iwave
       integer :: j, k, kk, jj
       real :: ab, ajp, preceff, rainsum
+      real :: Expo, Atri
 
       j = 0
       j = ihru

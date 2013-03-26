@@ -61,6 +61,8 @@
       use parm
 
       integer :: j, j1
+      integer :: i30
+      real :: eo_sum, rfqeo_sum, w1, w2, wtl
 
       j = 0
       j = ihru

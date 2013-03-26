@@ -67,6 +67,7 @@
       integer, intent (in) :: ly1
       integer :: j
       real :: adjf, yy, dg, ho, ratio, sol_k_sep
+      real :: xx
 
       j = 0
       j = ihru

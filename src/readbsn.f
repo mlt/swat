@@ -346,6 +346,7 @@
       character (len=13) :: wwqfile
       integer :: eof, numlu
       real :: escobsn, epcobsn
+      integer :: ii, kk
 
 !!    initialize variables
       eof = 0

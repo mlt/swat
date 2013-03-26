@@ -75,6 +75,7 @@
       integer, intent (in) :: k
       integer :: jj
       real :: fps, d, b, p, a, qq1, rh, tt1, tt2, aa
+      real :: chsslope, Qman
 
       do jj = 1, 13
         phi(jj,k) = 0.

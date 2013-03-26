@@ -43,6 +43,7 @@
 
       integer :: j
       real :: dirt
+      real :: fr_curb
 
       j = 0
       j = ihru

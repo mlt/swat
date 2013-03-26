@@ -53,9 +53,11 @@
       real :: solN_net_min_pro 
 
       integer :: j, k, kk
+      real :: ffman, ffman1, ffman2, ffres, ffres1, ffres2, sat
 
     !! functions
-      real ::fwf, fof, fcdg, ftilf,fcx, fCNnew, fhc, fnetmin
+      real ::fwf, fof, fcgd, ftilf,fcx, fCNnew, fhc, fnetmin
+      real :: fsol_cdec
 
 
       j = 0; wdn = 0
@@ -447,6 +449,8 @@
 	
 	!! LOCAL FUNCTIONS
 	Function fwf(fc,wc,pwp)
+        real, intent(in) :: fc, wc, pwp
+        real :: xx2, fwf
 		xx2 = 0.
 		if (wc <= pwp) then
 			xx2 = 0.4 * wc / pwp
@@ -461,6 +465,8 @@
       End function
 
       Function fof(void,por)
+      real, intent(in) :: void, por
+      real :: xx3, fof
         xx3 = 0.
         if (void >= 0.1) then
             xx3 = 0.2 + 0.8 * (void - 0.1) / (por - 0.1)
@@ -472,6 +478,8 @@
 
 	
 	Function fcgd(xx)
+        real, intent(in) :: xx
+        real :: tn, top, tx, qq, fcgd
 		tn = -5.
 	  top = 35.
 		tx = 50.
@@ -481,6 +489,9 @@
 	End function
 
       Function ftilf(tillage, wc, sat)
+      real, intent(in) :: wc, sat
+      real, intent(inout) :: tillage
+      real :: ftilf
         !! tillage factor effect on decomposition
         !! tillage factor returns to baseline (=1) based on WC 
         tillage = tillage * (1. - 0.02 * wc/sat) 
@@ -490,12 +501,16 @@
     
 
       Function fcx(pclay)
+      real, intent(in) :: pclay
+      real :: fcx
         !! saturated soil carbon concentration (%) from Hassink and Whitmore 1997
         fcx = 2.11 + 0.0375 * pclay
       End function
 
 
 	Function fsol_cdec(pcarbon, cx, cfdec, tilf, csf, sol_cmass)
+        real, intent(in) :: pcarbon, cx, cfdec, tilf, csf, sol_cmass
+        real :: decf, fsol_cdec
 		!! decomposition adjustment by current SOC 
 		decf = (pcarbon / cx) ** 0.5	
 		! if (decf > 1.) decf = 1. 
@@ -505,6 +520,8 @@
 
 
       Function fCNnew(yy1,yy2,CNpool,yy5)
+      real, intent(in) :: yy1,yy2,CNpool,yy5
+      real :: fCNnew, yy3, yy4
       !! CN ratio of newly formed organic matter
       !! based on CN or decomposing residue and nitrate in soil
       !! the same approach used for crop residues and manure
@@ -529,7 +546,8 @@
 	!! pcarbon = %carbon
 	!! cx = saturated soil carbon, %
 	
-	real :: hx, hf, pclay, pcarbon
+        real, intent(in) :: pclay, pcarbon, cx
+        real :: hx, hf, fhc
 			 
 		hx = 0.09 + 0.09 * (1. - Exp(-5.5 * pclay / 100.))
 		!! humification adjustment by current SOC
@@ -542,6 +560,10 @@
 	End function
 
 	Function fnetmin(poold, R1, R2, hc, dummy, poolm, xinorg, cc1)
+        real, intent(in) :: R1, R2, hc, poolm, xinorg, cc1
+        real, intent(inout) :: poold
+        real, intent(out) :: dummy
+        real :: fnetmin, xx
 	!! This function computes net mineralization
 	!! R1 = CN or CP ratio of decomposing pool
 	!! R2 = CN or CP ratio of receiving pool

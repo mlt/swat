@@ -63,6 +63,7 @@
       character (len=4) :: unam
       real :: fimpu, fcimpu, crbdn, ucoef, dtmx, thlf, tncnc, tpcnc
       real :: tno3cnc
+      real :: urbcn
 
       iunum = 0
       eof = 0

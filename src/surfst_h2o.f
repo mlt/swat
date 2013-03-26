@@ -50,6 +50,7 @@
       use parm
 
       integer :: j
+      integer :: k
       
       j = 0
       j = ihru

@@ -44,6 +44,7 @@
 
       character (len=80) :: titldum
       integer :: eof
+      integer :: ib
       eof = 0
       
       do

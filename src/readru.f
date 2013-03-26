@@ -34,6 +34,9 @@
       
       character (len=80) :: titldum
       integer :: eof
+      real :: chk_ru, chl_ru, chn_ru, chs_ru, chw_ru, da_ru, ovn_ru
+      real :: ovs, ovsl, sumk, tck
+      integer :: ix, j
       
       eof = 0
 	do

@@ -121,6 +121,7 @@
       integer :: jrch, ii
       real :: xkm, det, yy, c1, c2, c3, c4, wtrin, p, vol, c
       real :: tbase, topw
+      real :: Qman
 
       jrch = 0
       jrch = inum1

@@ -56,6 +56,8 @@
       use parm
 
       integer :: j
+      integer :: nly
+      real :: plt_zmx
       
       j = 0
       j = ihru

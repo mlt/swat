@@ -159,6 +159,7 @@
       real :: dmt, yldt
       real, dimension (mhruo) :: pdvas, pdvs
       character (len=4) :: cropname
+      integer :: idplant, ix
 
       days = 0
 

@@ -138,6 +138,9 @@
       real :: hiad1, wur, clip, yieldn, yieldp, clipn, clipp
       real :: yldpst, clippst, rtresnew
       real :: nssr
+      real :: ff3, ff4, orgc_f, rtresn, rtresp
+      real :: ssabg, ssb, ssn, ssp, ssr, XX
+      integer :: l
 
 
       !!add by zhang

@@ -75,6 +75,7 @@
       integer :: itime, pt, ihour, nhour, k
       real :: vv, blm, qmn, uplm, dur, ab, ajp, altc, pkrain, rtp
       real :: xk1, xk2, xkp1, xkp2, rx, pkrr, sumrain
+      real :: Expo, Atri
 
 
       !! calculate maximum half-hour rainfall

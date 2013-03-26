@@ -114,6 +114,7 @@
 
       integer :: jrch, k, flag, ii
       real :: cnv, vmm, vminmm, vol, wtrin
+      real :: vmxi, wtr_avail, xx
 
       jrch = 0
       jrch = inum1

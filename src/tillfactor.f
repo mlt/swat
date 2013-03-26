@@ -17,6 +17,7 @@
 	
 	integer, intent (in) :: jj
       real, intent (in) :: bmix
+      real :: csdr, xx, xx1, xx2, yy, zz
       integer :: l, m1, m2
       real :: emix, dtil
 	real :: sol_thick(sol_nly(jj))

@@ -30,6 +30,7 @@
 
 !!    ~ ~ ~ ~ ~ ~ END SPECIFICATIONS ~ ~ ~ ~ ~ ~
       use parm
+      integer, intent(in) :: id
       integer :: icl
       if (i_mo.le.2) then
            icl = id - ndays(i_mo)

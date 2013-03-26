@@ -124,7 +124,7 @@
       character (len=13) :: figfile, bsnfile, plantdb, tilldb, urbandb, &
      &    pestdb, fertdb, fcstfile
 	
-
+      real :: Aunif
 
       character (len=80) :: titldum
       real :: sumv, xx

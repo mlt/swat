@@ -71,10 +71,10 @@
       use parm
 
       integer :: jrch
+      real :: Qman
       real :: wtrin, scoef, p, tbase, topw, vol, c, rh
 	  real :: volrt, maxrt, adddep, addp, addarea, vc, aaa
 	  real :: rttlc1, rttlc2, rtevp1, rtevp2, det
-
       jrch = 0
       jrch = inum1
 

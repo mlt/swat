@@ -63,6 +63,7 @@
       use parm
 
       integer, intent (in) :: j
+      real :: Aunif, dstn1
  
       real :: vv, pcpgen, v8, r6, xlv
 

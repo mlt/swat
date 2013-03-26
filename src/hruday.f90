@@ -185,6 +185,10 @@
       integer :: j, sb, ii, iflag
       real, dimension (mhruo) :: pdvas, pdvs
       character (len=4) :: cropname
+      integer :: idplant, k, icl
+      real :: sol_cmass, sol_mass, sol_nmass, tot_BMC, tot_cmass, tot_HPC
+      real :: tot_HSC, tot_LMC, tot_LSC, tot_mass, tot_nmass, tot_no3_nh3
+      real :: tot_pmass, tot_solp
 
       !!by zhang print out soil water
       !!===============================    

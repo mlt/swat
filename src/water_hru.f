@@ -20,6 +20,8 @@
 !!    ~ ~ ~ ~ ~ ~ END SPECIFICATIONS ~ ~ ~ ~ ~ ~
 
       use parm
+      real :: d, gma, ho, pet_alpha, tmpk
+      integer :: j
 	j = ihru
 !! if the HRU is water compute only pet and et
 !! using Priestly-Taylor and a coefficient

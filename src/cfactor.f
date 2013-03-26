@@ -59,6 +59,7 @@
 
       integer :: j
       real :: c
+      real :: bio_frcov, grcov_fr, rsd_frcov
 
       j = 0
       j = ihru

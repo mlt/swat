@@ -302,6 +302,7 @@
       integer :: igr, nairr, nafer, nsw, nrel, icf, mgt3i
       real :: husc, mgt6, mgt9, mgt4, mgt5, mgt7, mgt8
       real :: disc
+      integer :: iop, mgt_opprev, jdt, mgt10i
       
       eof = 0
       iop = 0

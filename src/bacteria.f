@@ -151,6 +151,7 @@
 
       integer :: j
       real :: bpq, blpq, bps, blps, wt1, cbact, xx
+      real :: Theta
 
       j = 0
       j = ihru

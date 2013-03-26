@@ -97,6 +97,7 @@
       use parm
 
       integer :: jres, inhyd
+      integer :: k
       real :: vol, sed, vvr, targ, xx, flw
  
       jres = 0

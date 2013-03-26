@@ -21,6 +21,7 @@
    
       integer :: j
       real :: aphu
+      real :: pburn, xx
 
       j = 0
       j = ihru

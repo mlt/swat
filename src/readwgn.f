@@ -136,6 +136,8 @@
       real, dimension (12) :: rainhhmx, rain_hhsm, pcpmm, pcpd
       real :: tmpsoil, sffc, rndm1, dl
       integer :: mon, mdays, j, m1, nda, xrnd
+      integer :: l, k
+      real :: Aunif, dstn1
 
 
       pcpd = 0.

@@ -73,6 +73,7 @@
       integer :: ap_ai, ap_af, mgt_op, ap_cf, ap_cc, ap_ci, jj
       integer :: iopera_sub
       real :: depth(25)
+      integer :: ilnds, kk, mcri
 
       do j= mhru1, mhru
       mgtfile = ""

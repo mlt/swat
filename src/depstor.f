@@ -55,6 +55,7 @@
 
       integer ::j
 	real:: df, hru_slpp, sol_orgm, sol_orr, sol_rrr, ei 
+      real :: xx
       j = 0
       j = ihru
 

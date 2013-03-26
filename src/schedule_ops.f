@@ -31,6 +31,8 @@
       use parm
 
       integer :: j, plant_no , zz
+      integer :: jj, k
+      real :: sin_sl, tch, tover, xm
 	real:: b
 	j = 0
 	j = ihru

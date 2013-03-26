@@ -97,6 +97,7 @@
 
       integer :: idlst, j, iix, iiz, ic, mon, ii
       real :: xx
+      integer :: iyr_at, ly, mo_at
 
 
       do curyr = 1, nbyr

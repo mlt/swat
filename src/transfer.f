@@ -124,6 +124,8 @@
 
       integer :: k, ii
       real :: volum, tranmx, ratio
+      integer :: nhyd_tr
+      real :: ratio1, xx
 
 !! check beg/end months summer or winter
       if (mo_transb(inum5) < mo_transe(inum5)) then

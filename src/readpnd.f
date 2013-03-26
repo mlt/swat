@@ -171,6 +171,8 @@
       real :: sn1, sn2, snw1, snw2, schla, schlaw, sseci, sseciw
       real :: spno3, spsolp, sporgn, sporgp, swno3, swsolp, sworgn
       real :: sworgp, sub_ha, velsetlpnd
+      integer :: ii, k
+      real :: pnd_d50, pnd_d50mm, pndevcoeff, wetevcoeff, vselsetlpnd
 
       eof = 0
       spndfr = 0.

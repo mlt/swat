@@ -160,6 +160,8 @@
       real :: bp1c, bp2c, bp3c, wsyfc, gsic, wavpc, rsdcopl, alaimin
       real :: bioleaf
       character (len=4) :: cname
+      real :: biomxtrees, bmdieoff, extcoef, rsr1c, rsr2c
+      integer :: idtype
 
       eof = 0
 

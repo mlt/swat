@@ -28,7 +28,8 @@
       use parm
       character (len=80) :: titldum
       integer :: eof 
-  
+      integer :: iii, imo, momax
+
       eof = 0
   
       rcn_sub = rcn_sub_bsn

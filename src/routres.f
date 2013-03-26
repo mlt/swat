@@ -192,6 +192,7 @@
       use parm
 
       integer :: jres, k, ii
+      integer :: ires_code
       real :: sepmm, resorgpc, ressolpc, sedcon, resorgnc, resno3c
       real :: resno2c, resnh3c
 

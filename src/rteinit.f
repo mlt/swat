@@ -107,6 +107,7 @@
       use parm
 
       integer :: icd, inm1, inm2, inm3, inm4, iht
+      integer :: isb
       real :: rnm1
 
 !!    calculate watershed area in hectares

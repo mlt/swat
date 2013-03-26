@@ -102,6 +102,8 @@
 
       use parm
 
+      integer :: ii, iru_sub
+
       idum = 0
 
       do ii = 1, mhyd_bsn

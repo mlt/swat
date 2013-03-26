@@ -48,6 +48,7 @@
       integer, intent (in) :: iwave
       integer :: j
       real :: altc
+      real :: Expo
 
       j = 0
       j = ihru

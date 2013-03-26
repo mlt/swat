@@ -168,6 +168,10 @@
       integer :: j, ly
       real :: potsep, sumo, potev, cnv, potpcp, no3in, qdayi
       real :: sedloss, no3loss, yy, dg, excess, stmax, sedsetl
+      real :: drcla, drsil, drtot, pot_depth, potflwosp
+      real :: potmpao, potmpso,potno3o, potorgno, potorgpo
+      real :: potsa_ini, potsolpo, potvol_ini, potvol_m3
+      real :: qin, rto, spillo, tileo, xx
 	real :: sanloss, silloss, claloss, sagloss, lagloss
       real :: potmm,minpsloss,minpaloss, solploss, orgnloss, orgploss
 

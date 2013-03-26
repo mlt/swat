@@ -60,6 +60,7 @@
       integer, intent (in) :: h
       real, intent (in) :: cnn
       real :: c2, s3, rto3, rtos
+      real :: smxold
    
       cn2(h) = cnn
       if (cn1(h) > 1.e-6) smxold = 254.* (100. / cn1(h) - 1.)

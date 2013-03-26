@@ -21,6 +21,9 @@
 
       use parm
 
+      integer :: j
+      real :: sednppm, sedppm, sedpppm, solnppm, solpppm, xx
+
 	j = 0
 	j = ihru
 

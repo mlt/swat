@@ -57,6 +57,7 @@
 
       real :: xx, rn
       integer :: ii, j, k, rndseed10
+      real :: Aunif
       
 !!    initialize random number array locator
       idg = (/1,2,3,4,5,6,7,8,9/)

@@ -264,6 +264,8 @@
       use parm
 
       integer :: j, sb, kk, ii
+      integer :: ib
+      real :: ratio, Tair
       real :: cnv, sub_ha, wtmp, baseflw, bf_fr,hr
       real :: sub_hwyld(nstep), hqd(4*nstep), hsd(4*nstep),hqdtst(nstep)   ! hqd, hsd locally defined. J.Jeong 4/26/2009
 
