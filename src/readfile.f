@@ -768,8 +768,8 @@
 !! sj september 2010 CSWAT final output
       if (cswat == 1) then
 	open (100,file="cswat_profile.txt",recl=280)
-	write (100,*) 'year',';','day',';','hru',';','cmass',';','sol_rsd',
-     &';','mancmass'
+	write (100,*) 'year',';','day',';','hru',';','cmass',';',
+     $       'sol_rsd',';','mancmass'
       end if
 
       

@@ -600,7 +600,7 @@
      &    'P LEACHED =  ',f8.3,' (KG/HA)',/,t20,                        &
      &    'N UPTAKE =  ',f8.3,' (KG/HA)',/,t20,'P UPTAKE = ',f8.3,      &
      &    ' (KG/HA)',/,t20,'NO3 YIELD (GWQ) =  ',f8.3,' (KG/HA)')
- 2800 format (t20,'ACTIVE TO SOLUTION P FLOW =  ',f12.3,' (KG/HA)',/,t20,&
+ 2800 format(t20,'ACTIVE TO SOLUTION P FLOW =  ',f12.3,' (KG/HA)',/,t20,&
      &    'ACTIVE TO STABLE P FLOW =  ',f12.3,' (KG/HA)',/,t20,         &
      &    'N FERTILIZER APPLIED = ',f9.3,' (KG/HA)',/,t20,              &
      &    'P FERTILIZER APPLIED = ',f9.3,' (KG/HA)',/,t20,              &
