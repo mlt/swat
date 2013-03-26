@@ -394,7 +394,8 @@
       integer, dimension (:,:), allocatable :: mgt1iop,mgt2iop,mgt3iop
       real, dimension (:,:), allocatable ::  mgt4op, mgt5op, mgt6op
       real, dimension (:,:), allocatable :: mgt7op, mgt8op, mgt9op
-      real, dimension (:,:), allocatable :: mgt10iop, phu_op
+      integer, dimension (:,:), allocatable :: mgt10iop
+      real, dimension (:,:), allocatable :: phu_op
 ! mcrdb = maximum number of crops in database
       real, dimension (:), allocatable :: wac21,wac22,cnyld,rsdco_pl
       real, dimension (:), allocatable :: wsyf,leaf1,leaf2,alai_min
@@ -492,8 +493,8 @@
       real, dimension (:), allocatable :: shallirr,deepirr,lai_aamx
       real, dimension (:), allocatable :: canstor,ovrlnd,ch_l1,wet_no3
       real, dimension (:), allocatable :: irr_mx, auto_wstr
-      real, dimension (:), allocatable :: cfrt_id, cfrt_kg, cpst_id
-      real, dimension (:), allocatable :: cpst_kg
+      integer, dimension (:), allocatable :: cfrt_id, cpst_id
+      real, dimension (:), allocatable :: cfrt_kg, cpst_kg
       real, dimension (:), allocatable :: irr_asq, irr_eff
       real, dimension (:), allocatable :: irrsq, irrefm, irrsalt
       real, dimension (:), allocatable :: bio_eat, bio_trmp             !!NUBZ
@@ -586,7 +587,8 @@
       real, dimension (:,:), allocatable :: cont_cn, cont_p, filt_w   
       real, dimension (:,:), allocatable :: strip_n, strip_cn, strip_c
       real, dimension (:,:), allocatable :: strip_p, fire_cn
-      real, dimension (:,:), allocatable :: cropno_upd,hi_upd,laimx_upd
+      integer, dimension (:,:), allocatable :: cropno_upd
+      real, dimension (:,:), allocatable :: hi_upd,laimx_upd
       real, dimension (:,:,:), allocatable :: pst_lag, phug
  !!     integer, dimension (:), allocatable :: ipot,nrelease,swtrg,hrupest
       integer, dimension (:), allocatable :: nrelease,swtrg,hrupest
@@ -729,7 +731,8 @@
      &  ft_sed_cumul,sp_sed_cumul
       integer, dimension(:), allocatable:: num_sf
       integer, dimension(:,:), allocatable:: sf_typ,sf_dim,ft_qfg,
-     &  sp_qfg,sf_ptp,ft_fc 
+     &  sp_qfg,sf_ptp
+      real, dimension(:,:), allocatable :: ft_fc
       
       !detention pond
 	integer, dimension(:), allocatable :: dtp_subnum,dtp_imo,

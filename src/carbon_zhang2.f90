@@ -112,6 +112,7 @@
        real :: PN1, PN2, PN3, PN4, PN5, PN6, PN7, PN8, PN9
        real :: SUM, CPN1, CPN2, CPN3, CPN4, CPN5
        real :: WMIN,DMDN, wdn, Delta_BMC, DeltaWN
+       real :: LSLNCAT
        !! initilize local variables
        DeltaWN = 0.
        DeltaBMC = 0.   

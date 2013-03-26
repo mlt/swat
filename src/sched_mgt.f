@@ -222,7 +222,7 @@
             irr_noa(j) = mgt10iop(nop(j),j)
             if (irr_noa(j) <= 0) irr_noa(j) = irrno(j)
             if (irr_noa(j) <= 0) irr_noa(j) = hru_sub(j)
-            if (wstrs_id(j) <= 0.) wstrs_id(j) = 1.     
+            if (wstrs_id(j) <= 0.) wstrs_id(j) = 1
             if (irr_eff(j) > 1.) irr_eff(j) = 0.
             if (irr_eff(j) == 0.) irr_eff(j) = 1.
             if (irr_mx(j) < 1.e-6) irr_mx(j) = 25.4

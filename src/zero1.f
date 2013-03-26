@@ -167,7 +167,7 @@
       phu_plt = 0.
       phuacc = 0.
       phug = 300.
-      phu_op = 0.
+      phu_op = 0
       phutot = 0.
       plaps = 0.
 !!  septic changes 1/29/09 

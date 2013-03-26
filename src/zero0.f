@@ -343,7 +343,7 @@
       irip = 0
       irn = 0
       irramt = 0.
-      irreff = 1.
+      irreff = 1
       irrefm = 1.
       irrsalt = 0.
       irrsc = 0

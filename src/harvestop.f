@@ -137,6 +137,7 @@
 !!    real :: hiad1, wur, yield, clip, yieldn, yieldp, clipn, clipp
       real :: hiad1, wur, clip, yieldn, yieldp, clipn, clipp
       real :: yldpst, clippst, rtresnew
+      real :: nssr
 
 
       !!add by zhang

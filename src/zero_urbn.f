@@ -38,7 +38,7 @@
       num_sf = 0
       sf_fr = 0.
       sf_dim = 0
-      sf_typ = 0.
+      sf_typ = 0
       sf_im = 0.
       sf_iy = 0.
       sp_sa = 0.
@@ -74,7 +74,7 @@
 	ft_qfg = 0
 	sp_qfg = 0
 	sf_ptp = 0
-	ft_fc = 0
+	ft_fc = 0.
 	!detention pond
 	dtp_subnum = 0
 	dtp_imo = 0
@@ -114,8 +114,8 @@
 	dtp_pcpret = 0.
 	dtp_cdis = 1.
 	dtp_wrwid = 0.
-	dtp_weirtype = 0.
-	dtp_weirdim = 0.
+	dtp_weirtype = 0
+	dtp_weirdim = 0
 	dtp_addon = 0.
 	dtp_ivol = 0.
 	dtp_ised = 0.

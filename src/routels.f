@@ -29,6 +29,7 @@
 !!
       use parm
       real :: latqout, gwqout, latqrunon, surfqrunon, latqlyr
+      real :: no3, nh3
 
 !!    compute infiltration from surface runon to next landscape unit
       real :: ls_overq, ls_latq, ls_tileq, ls_gwq
