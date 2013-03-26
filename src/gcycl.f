@@ -83,7 +83,7 @@
            rn = 0.
            ii = 0
            rn = Aunif(rndseed10)
-           ii = 100 * igen * rn
+           ii = int(100. * igen * rn)
            do k = 1, ii
              xx = Aunif(rndseed10)
            end do  
@@ -96,7 +96,7 @@
           rn = 0.
           ii = idg(j)
           rn = Aunif(rndseed10)
-          k = j * rn + 1
+          k = int(j * rn) + 1
           idg(j) = idg(k)
           idg(k) = ii
         end do

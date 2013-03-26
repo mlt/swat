@@ -345,7 +345,7 @@
       bio_aams = bio_aams / yrs
       lai_aamx = lai_aamx / yrs
       yldaa = yldaa / yrs
-      irn = irn / yrs
+      irn = int(irn / yrs)
       aairr = aairr / yrs
       do j = 1, nhru
         do nicr = 1, mcrhru(j)
