@@ -408,6 +408,7 @@
       real, dimension (:,:), allocatable :: pltnfr,pltpfr
       integer, dimension (:), allocatable :: idc, mat_yrs
 ! mfdb = maximum number of fertilizer in database
+      integer :: ifrt
       real, dimension (:), allocatable :: forgn,forgp,fminn,bactpdb
       real, dimension (:), allocatable :: fminp,fnh3n,bactlpdb,bactkddb
       character(len=8), dimension (200) :: fertnm
@@ -591,6 +592,7 @@
       integer, dimension (:), allocatable :: nrelease,swtrg,hrupest
       integer, dimension (:), allocatable :: nro,nrot,nfert
       integer, dimension (:), allocatable :: igro,nair,ipnd1,ipnd2
+      integer :: igrow
       integer, dimension (:), allocatable :: nirr,iflod1,iflod2,ndtarg
       integer, dimension (:), allocatable :: iafrttyp, nstress
       integer, dimension (:), allocatable :: igrotree

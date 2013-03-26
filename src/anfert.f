@@ -168,7 +168,7 @@
       use parm
 
       real, parameter :: rtoaf = 0.50
-      integer :: j, ly, ifrt
+      integer :: j, ly
       real :: tsno3, tpno3, dwfert, xx, targn, tfp
 
       j = 0
