@@ -50,7 +50,6 @@ set( SWAT_SRCS
   ee.f
   eiusle.f
   enrsb.f
-  erfc.f
   estimate_ksat.f
   etact.f
   etpot.f
@@ -141,7 +140,6 @@ set( SWAT_SRCS
   print_hyd.f
   psed.f
   qman.f
-  ran1.f
   rchaa.f
   rchday.f
   rchinit.f
