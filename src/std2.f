@@ -169,7 +169,7 @@
           kdrn = " "
           kpot = " "
           kpst = " "
-          ksep = "   "
+          ksep = " "
           if (iurban(j) > 0) kubn = "x"
        !!   if (ipot(j) == j) kpot = "x"
           if (pot_fr(j) > 0.) kpot = "x"
