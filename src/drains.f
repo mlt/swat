@@ -97,6 +97,7 @@
       gee1 =0.
 
 !! find number of soil layers 
+      nlayer = 0
       do j1 = 1, mlyr
         if(sol_z(j1,j) > 0.) nlayer = j1	    
       end do
