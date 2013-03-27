@@ -69,7 +69,7 @@
 !!    Intrinsic: Min
 !!    SWAT: rchinit, rtover, rtday, rtmusk, rthourly, rtsed, rthsed, watqual
 !!    SWAT: noqual, hhwatqual, hhnoqual, rtpest, rthpest, rtbact, irr_rch
-!!    SWAT: rchuse, reachout
+!!    SWAT: rchuse, rtout
 
 !!    ~ ~ ~ ~ ~ ~ END SPECIFICATIONS ~ ~ ~ ~ ~ ~
 
