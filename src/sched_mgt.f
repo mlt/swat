@@ -32,7 +32,7 @@
 
       use parm
 
-      real :: biomass, fr_curb, husc, thenharveff
+      real :: biomass, husc, thenharveff
       integer :: j, ihv_gbm, ncrp
 
       j = ihru
