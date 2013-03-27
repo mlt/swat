@@ -180,6 +180,8 @@
       
 
 !! New pothole variables
+      integer :: irelease
+      real :: fr_curb
       real, dimension (:), allocatable :: spill_hru,tile_out,hru_in
       real, dimension (:), allocatable :: spill_precip,pot_seep
       real, dimension (:), allocatable :: pot_evap,pot_sedin
