@@ -65,7 +65,9 @@
       integer :: j, kk, k, jj
       real :: xx, gc
 
-      j = 0
+      !! initialize local variables
+      kk = -1
+      k = -1
       j = ihru
 
 !! if continuous pesticide not currently on, check to see if it is time
@@ -76,12 +78,6 @@
         !! reset frequency counter
         iday_pest(j) = 1
 
-        !! initialize local variables
-        kk = 0
-        k = 0
-        jj = 0
-        xx = 0.
-  
         kk = cpst_id(j)
         k = nope(kk)
         xx = cpst_kg(j)
