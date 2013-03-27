@@ -203,6 +203,7 @@
                   end do
                 end do
               else                                 !no precip on day
+                  flag = 0
                 read (100+k,5201) iyp, idap, (rmeas(l), l = kk1, kk2)
                   if (iyp /= iyr .or. idap /= i) flag = 1
                   if (flag == 1) then
