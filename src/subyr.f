@@ -48,9 +48,22 @@
 !!    ~ ~ ~ ~ ~ ~ END SPECIFICATIONS ~ ~ ~ ~ ~ ~
 
       use parm
+      use odbc
 
       integer :: sb, ii
       real, dimension (msubo) :: pdvab, pdvb
+      type(c_ptr) :: stmt
+
+      stmt = allocate_statement(db_out)
+
+      if (SQL_SUCCESS /= SQLPrepare(stmt, C_CHAR_"insert into output_sub
+c$$$     $ (SUB, GIS, MON)
+c$$$     $ values(?,?,?)
+     $ values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)
+     $ " // C_NULL_CHAR, SQL_NTS)) then
+         write (*,*) "Failed to prepare statement"
+         call print_diag(SQL_HANDLE_STMT, stmt)
+      end if
 
       do sb = 1, subtot
 
@@ -88,6 +101,31 @@
           do ii = 1, itotb
             pdvb(ii) = pdvab(ipdvab(ii))
           end do
+          if (SQL_SUCCESS /= SQLBindParameter(stmt,1_2, SQL_PARAM_INPUT,
+     &         SQL_INTEGER, 0, 0_2, sb)) then
+             write (*,*) "Failed to bind sb"
+             call print_diag(SQL_HANDLE_STMT, stmt)
+          end if
+          if (SQL_SUCCESS /= SQLBindParameter(stmt,2_2, SQL_PARAM_INPUT,&
+     &         SQL_INTEGER, 0, 0_2, subgis(sb)))
+     &         write (*,*) "Failed to bind subgis"
+          if (SQL_SUCCESS /= SQLBindParameter(stmt,3_2, SQL_PARAM_INPUT,&
+     &         SQL_REAL, 0, 0_2, iyr)) then
+             write (*,*) "Failed to bind iyr"
+             call print_diag(SQL_HANDLE_STMT, stmt)
+          end if
+          if (SQL_SUCCESS /= SQLBindParameter(stmt,4_2, SQL_PARAM_INPUT,&
+     &         SQL_REAL, 0, 0_2, sub_km(sb)))
+     &         write (*,*) "Failed to bind sub_km"
+          do ii = 1, itotb
+             if (SQL_SUCCESS /= SQLBindParameter(stmt,
+     &      int(ii+4, 2), SQL_PARAM_INPUT, SQL_REAL, 0, 0_2, pdvb(ii))) &
+     &            write (*,*) "Failed to bind rest"
+          end do
+          if (SQL_SUCCESS /= SQLExecute(stmt)) then
+             write (*,*) "Failed to execute statement"
+             call print_diag(SQL_HANDLE_STMT, stmt)
+          end if
           write (31,1000) sb, subgis(sb), iyr, sub_km(sb),              &
      &                                         (pdvb(ii), ii = 1, itotb)
         else
@@ -95,6 +133,11 @@
      &                                        (pdvab(ii), ii = 1, msubo)
         end if
       end do
+
+      if (SQL_SUCCESS /= SQLFreeHandle(SQL_HANDLE_STMT, stmt)) then
+         write (*,*) "Failed to free statement handle"
+         call print_diag(SQL_HANDLE_STMT, stmt)
+      end if
 
       return
 !1000 format ('BIGSUB',i4,1x,i8,1x,i4,e10.5,21f10.3)
