@@ -53,7 +53,13 @@
 !!    ~ ~ ~ ~ ~ ~ END SPECIFICATIONS ~ ~ ~ ~ ~ ~
 
       use parm
+      use odbc
+      use M_kracken
       implicit none
+
+      character(255) :: dsn
+      integer :: iflen, ier
+
       prog = "SWAT Jan 28 2013    VER 2012/Rev 585"
 
       write (*,1000)
@@ -65,6 +71,12 @@
 
 !! process input
 		
+      call kracken('swat','-in DSN=swat-in -out DSN=swat-out')
+c$$$      call retrev('swat_in', dsn, iflen, ier)
+c$$$      if (.not. db_in%connect(dsn)) stop
+      call retrev('swat_out', dsn, iflen, ier)
+      if (.not. db_out%connect(dsn)) stop
+
       call getallo
       call allocate_parms
       call readfile
@@ -131,6 +143,8 @@
       write (*,1001)
  1001 format (/," Execution successfully completed ")
 	
+      call db_in%disconnect()
+      call db_out%disconnect()
 
         iscen=1
 	stop

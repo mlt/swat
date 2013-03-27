@@ -114,6 +114,7 @@ set( SWAT_SRCS
   nrain.f
   nup.f
   nuts.f
+  odbc.f95
   openwth.f
   operatn.f
   orgn.f
@@ -320,7 +321,13 @@ set_source_files_properties(
   carbon_zhang2.f90
   PROPERTIES COMPILE_FLAGS -ffree-line-length-none)
 
+find_package(FODBC)
+find_package(KRACKEN)
+include_directories(${FODBC_DIR} ${KRACKEN_DIR})
+
 add_executable(swat ${SWAT_SRCS})
+target_link_libraries(swat fodbc kracken)
+
 set(PATCH ${CPACK_PACKAGE_VERSION_PATCH})
 if(CPACK_PACKAGE_VERSION_PATCH MATCHES "^[0-9]")
   set(PATCH ".${PATCH}")
