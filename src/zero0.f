@@ -24,7 +24,6 @@
       cf = 0.0
       cfh = 0.0
       cfdec = 0.0
-      pnd_d50 = 0.0
       isnow = 0
       imgt = 0
       iwtr = 0
@@ -171,7 +170,6 @@
       daylmn = 0.
       daru_km = 0.
 !    Drainmod tile equations  01/2006 
-      dc = 0.
       drain_co_bsn = 0.
 !    Drainmod tile equations  01/2006
       ddrain = 0.
@@ -202,9 +200,6 @@
       dorm_hr = -1.
       dorm_flag = 0
       driftco = 0.
-!    Drainmod tile equations  01/2006 
-      dtwt = 600.
-      dz = 0.
 !    Drainmod tile equations  01/2006
       drydep_no3 = 0.
       drydep_nh4 = 0.
@@ -245,8 +240,6 @@
       ftmpstdmx = 0.
       gdrain = 0.
       gdrain_bsn = 0.
-!    Drainmod tile equations  01/2006 
-      gee = 0.
 !    Drainmod tile equations  01/2006
       gsi = 0.
       gw_delaye = 0.
@@ -259,15 +252,11 @@
 !      surfq_ru = 0.
 !      infl_ru = 0.
       gwqmn = 0.
-!    Drainmod tile equations  01/2006 
-      hdrain = 0.
-      hdrain_bsn = 0.
 !    Drainmod tile equations  01/2006
       hi_ovr = 0.
       hi_targ = 0.
       hlife_f = 0.
       hlife_s = 0.
-      hqd = 0.
       hqdsave = 0.
       hru_dafr = 0.
       hru_fr = 0.
@@ -298,7 +287,6 @@
       idplt = 0
       idplrot = 1
       idtill = 0
-      ihv_gbm = 0
       wstrs_id = 0
       ifirstpcp = 1
       ifirsthr = 1
@@ -327,7 +315,6 @@
       inum6s = 0
       inum7s = 0
       inum8s = 1
-      iop = 0
       ioper = 1
       iopera = 1
       iopday = 0
@@ -343,7 +330,7 @@
       irip = 0
       irn = 0
       irramt = 0.
-      irreff = 1
+      irr_eff = 1
       irrefm = 1.
       irrsalt = 0.
       irrsc = 0
@@ -355,7 +342,6 @@
       irrsc = 0
       irr_sc = 0
       irr_no = 0
-      irr_sq = 0
       irr_asq = 0
       irr_sca = 0
       irr_noa = 0
@@ -401,7 +387,6 @@
       irr_mx = 0.
   !! change per JGA irrigation 4/2/2009
       latno3 = 0.
-      nicr = 0
       ndmo = 0
       ndtarg = 0
       newrti = 0.
@@ -470,7 +455,6 @@
       sol_clay = 0. 
 !    Drainmod tile equations  01/2006 
       stmaxd = 0.
-      stmaxd_bsn = 0.
 !    Drainmod tile equations  01/2006 
      
       sol_ec = 0.
@@ -478,7 +462,7 @@
       sol_silt = 0.
       sol_clay = 0.
 !!   added for Srini in output.mgt nitrogen and phosphorus nutrients per JGA by gsm 9/8/2011
-      sol_sumn03 = 0.
+      sol_sumno3 = 0.
       sol_sumsolp = 0.
       strsw = 1.
       strsw_sum = 0.
@@ -505,7 +489,7 @@
       tb_adj = 0.
       tdrain = 0.
       tdrain_bsn = 0.
-      tile_no3 = 0.
+      tile_no3o = 0.
       tileq = 0.
       tile_ttime = 0.
       uh = 0.

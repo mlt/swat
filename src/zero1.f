@@ -5,6 +5,10 @@
 
       use parm
 
+c$$$      ! do these really get initialized or just local???
+c$$$      real :: bio_fecal, grwat_veg, plq_rt, rsp_rt, sep_opt, silt
+c$$$      real :: slg_rt, sub_petco, vp
+
 !!    added for manure Armen Jan 2009
       sol_mc = 0.
       sol_mn = 0.
@@ -44,7 +48,6 @@
       bio_bod = 0.
       fcoli = 0.  
       bio_ntr = 0.
-      bio_fecal = 0.  
       bio_ntr = 0.
       biom = 0.
       rbiom = 0.
@@ -58,7 +61,7 @@
       bz_area = 0
 !!    isep_typ = 1
       isep_typ = 0
-      sep_opt= 1
+      isep_opt= 1
       sep_tsincefail = 0
       isep_tfail = 0
       coeff_bod_dc = 0
@@ -112,7 +115,6 @@
       grwat_l = 0.
       grwat_w = 0.
       grwat_d = 0.
-      grwat_veg = 0.
       gwati = 0.
       gwatn = 0.
       gwatl = 0.
@@ -172,7 +174,6 @@
       plaps = 0.
 !!  septic changes 1/29/09 
       plqm = 0.
-      plq_rt = 0.
 !!  septic changes 1/29/09
       plt_pst = 0.
       pname = ""
@@ -232,9 +233,6 @@
       rk5 = 0.
       rk6 = 0.
       rnum1s = 0.
-!!  septic changes 1/29/09
-      rsp_rt = 0.
-      slg_rt = 0.
 !!  septic changes 1/29/09 
       sol_rock = 0.
       rs1 = 0.
@@ -253,7 +251,6 @@
       sedst = 0.
       shallst = 0.
       shallst_n = 0.
-      silt = 0.
       skoc = 0.
       slsoil = 0.
       slsubbsn = 0.
@@ -315,8 +312,6 @@
       sub_dcla = 0.
       sub_dsag = 0.
       sub_dlag = 0.
-      sub_dgra = 0.
-      sub_petco = 0.       ! CB 8/24/09
       sub_smfmx = 0.       ! CB 8/24/09
       sub_smfmn = 0.       ! CB 8/24/09
       sub_sftmp = 0.       ! CB 8/24/09
@@ -361,8 +356,6 @@
       usle_ls = 0.
       usle_p = 0.
       vel_chan = 0.
-!!  septic changes 1/29/09
-      vp = 0. 
 !!  septic changes 1/29/09
       vfsi = 0.    !CB 8/24/09
       vpd2 = 0.
