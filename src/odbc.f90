@@ -1,6 +1,6 @@
 module odbc
 
-  use fodbc_ext
+  use fodbc
   implicit none
 
   ! private :: print_diag
@@ -35,7 +35,7 @@ contains
     character(*), intent(in) :: connstr
     logical :: connect
     connect = .false.
-    write (*, '("Connection string: ", A)') connstr
+    write (*, '("Connection string: ", A)') trim(connstr)
     if (SQL_SUCCESS /= SQLAllocHandle(SQL_HANDLE_ENV, C_NULL_PTR, self%env)) then
        print *, "Can't allocate environment"
        return
@@ -80,13 +80,18 @@ contains
     character(SQL_MAX_MESSAGE_LENGTH, c_char) :: msg
     integer(c_int) :: native
     character(6, c_char) :: state
-    integer(c_short) :: idx
-    idx = 1
-    do while (SQL_SUCCESS == SQLGetDiagRec(type, handle, idx, &
-         state, native, msg, SQL_MAX_MESSAGE_LENGTH, length))
-       write(*,*) msg(1:length)
-       idx = idx + 1
-    end do
+    integer(c_short) :: idx, iRet
+    integer(c_int), target :: count
+    count = 0
+    if (SQL_SUCCESS /= SQLGetDiagField0(type, handle, 1_2, SQL_DIAG_NUMBER, c_loc(count), 0_2, C_SHORT_NULL_PTR)) then
+       write (*,*) "Failed to get the number of diagnostic messages!"
+    else
+       do idx=1, count
+          if (SQL_SUCCESS == SQLGetDiagRec(type, handle, idx, &
+               state, native, msg, SQL_MAX_MESSAGE_LENGTH, length)) &
+               write(*,*) msg(1:length)
+       end do
+    end if
   end subroutine print_diag
 
 end module odbc
