@@ -113,7 +113,7 @@ set( SWAT_SRCS
   nrain.f
   nup.f
   nuts.f
-  odbc.f95
+  odbc.f90
   openwth.f
   operatn.f
   orgn.f
