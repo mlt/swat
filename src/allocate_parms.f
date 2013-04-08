@@ -1509,7 +1509,6 @@
       allocate (wshddayo(mstdo))
       allocate (wshdmono(mstdo))
       allocate (wshdyro(mstdo))
-      allocate (fcstaao(nstep))
 
       allocate (wpstaao(mpst,5))
       allocate (wpstmono(mpst,5))

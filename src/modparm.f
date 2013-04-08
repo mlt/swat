@@ -199,7 +199,8 @@
       integer, dimension (:), allocatable :: icolb,icolr,icolrsv,icols
       integer, dimension (:), allocatable :: ipdvar,ipdvab,ipdvas,ipdhru
       real, dimension (:), allocatable :: wshddayo,wshdmono,wshdyro
-      real, dimension (:), allocatable :: wshdaao,fcstaao
+      real, dimension (:), allocatable :: wshdaao
+      real, dimension (16) :: fcstaao
       real, dimension (:,:), allocatable :: wpstdayo,wpstmono,wpstyro
       real, dimension (:,:), allocatable :: yldkg, bio_hv
       real, dimension (:,:), allocatable :: wpstaao,rchmono,rchyro
