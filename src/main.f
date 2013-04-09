@@ -74,12 +74,14 @@
       call kracken('swat','-in DSN=swat-in -out DSN=swat-out')
 c$$$      call retrev('swat_in', dsn, iflen, ier)
 c$$$      if (.not. db_in%connect(dsn)) stop
-      call retrev('swat_out', dsn, iflen, ier)
-      if (.not. db_out%connect(dsn)) stop
 
       call getallo
       call allocate_parms
       call readfile
+      call retrev('swat_out', dsn, iflen, ier)
+      if (.not. db_out%connect(dsn)) then
+         write (*,*) "Failed to connect to output DB"
+      end if
       call readbsn
       call readwwq
       if (fcstyr > 0 .and. fcstday > 0) call readfcst
@@ -96,7 +98,11 @@ c$$$      if (.not. db_in%connect(dsn)) stop
       call std1
       call std2
       call openwth
+c$$$      if (IA_B_BINARY == ia_b) then
+      call db_out%prepare()
+c$$$      else
       call headout
+c$$$      end if
 
       !! convert integer to string for output.mgt file
       subnum = ""

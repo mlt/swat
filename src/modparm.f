@@ -99,7 +99,8 @@
       integer :: i_subhw, imgt, idlast, iwtr, ifrttyp, mo_atmo, mo_atmo1
       integer :: ifirstatmo, iyr_atmo, iyr_atmo1
       integer :: mrg, mch, mcr, mpdb, mcrdb, mfdb, mhru, mhyd, mfcst
-      integer :: mnr, myr, mcut, mgr, msubo, mrcho, isubwq, ffcst
+      integer :: mnr, myr, mcut, mgr, mrcho, isubwq, ffcst
+      integer, parameter :: msubo = 22
       integer :: nhru, isproj, mo, nbyr, immo, nrch, nres, irte, i_mo
       integer :: icode, ihout, inum1, inum2, inum3, inum4, wndsim, ihru
       integer :: inum5, inum6, inum7, inum8, icfac
@@ -196,6 +197,9 @@
 ! output files 
 !!  added for binary files 3/25/09 gsm
       integer :: ia_b, ihumus, itemp, isnow
+      enum, bind(c)
+         enumerator :: IA_B_ASCII, IA_B_BINARY
+      end enum
       integer, dimension (:), allocatable :: icolb,icolr,icolrsv,icols
       integer, dimension (:), allocatable :: ipdvar,ipdvab,ipdvas,ipdhru
       real, dimension (:), allocatable :: wshddayo,wshdmono,wshdyro
