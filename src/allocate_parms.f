@@ -55,9 +55,6 @@
       mvaro = 33
       mhruo = 78
       mrcho = 62
-!     msubo = 18
-!     changed for jennifer b
-      msubo = 22
       mstdo = 113
       motot = 600             !! (50 years limit)
       

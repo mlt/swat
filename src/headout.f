@@ -52,30 +52,8 @@
 !!    ~ ~ ~ ~ ~ ~ END SPECIFICATIONS ~ ~ ~ ~ ~ ~
 
       use parm
-      use odbc
 
       integer :: j, ilen
-      type(c_ptr) :: stmt
-
-      stmt = allocate_statement(db_out)
-c$$$      write (*,*) "Trying to drop output_sub"
-c$$$      if (SQL_SUCCESS /= SQLExecDirect(stmt,
-c$$$     &     C_CHAR_"DROP TABLE output_sub" // C_NULL_CHAR, SQL_NTS)) then
-c$$$         write (*,*) "Failed to drop output_sub"
-c$$$         call print_diag(SQL_HANDLE_STMT, stmt)
-c$$$      end if
-      if (SQL_SUCCESS /= SQLExecDirect(stmt, "create table output_sub (
-     &     SUB integer, GIS integer, MON integer, AREAkm2 real,
-     &     PRECIPmm real, SNOMELTmm real, PETmm real, ETmm real,
-     &     SWmm real, PERCmm real, SURQmm real, GW_Qmm real,
-     &     WYLDmm real, SYLDt_ha real, ORGNkg_ha real, ORGPkg_ha real,
-     &     NSURQkg_ha real, SOLPkg_ha real, SEDPkg_ha real,
-     &     LAT_Qmm real, LATNO3kg_h real, GWNO3kg_ha real,
-     &     CHOLAmic_L real, CBODUmg_L real, DOXQmg_L real,
-     &     TNO3kg_ha real)" // C_NULL_CHAR, SQL_NTS)) then
-         write (*,*) "Failed to create a table."
-         call print_diag(SQL_HANDLE_STMT, stmt)
-      end if
       
       call header
 
@@ -204,11 +182,6 @@ c$$$      end if
       write(77779,'(5a6,30a12)') 'year', 'day','time','sub','RInum',
      & 'inflw(m3)','qbypass(m3)','pmpflw(m3)','sedin(kg)','sbypass(kg)',
      & 'pmpsed(kg)'
-
-      if (SQL_SUCCESS /= SQLFreeHandle(SQL_HANDLE_STMT, stmt)) then
-         write (*,*) "Failed to free statement handle"
-         call print_diag(SQL_HANDLE_STMT, stmt)
-      end if
 
       return
  1000 format ('1',/t5,a80,t105,2(i2,'/'),i4,5x,2(i2,':'),i2)
