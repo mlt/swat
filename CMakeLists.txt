@@ -4,7 +4,7 @@ project(swat Fortran)
 
 set(CPACK_PACKAGE_VERSION_MAJOR 2012)
 set(CPACK_PACKAGE_VERSION_MINOR 591)
-set(CPACK_PACKAGE_VERSION_PATCH "1")
+set(CPACK_PACKAGE_VERSION_PATCH "odbc1")
 
 option(USE_GPROF "Profile the project using gprof" OFF)
 if(USE_GPROF)
