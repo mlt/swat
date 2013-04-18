@@ -52,6 +52,9 @@
       integer :: imho, itempa, mxsubch
 
 !! initialize variables    
+      iyr => now%year
+      mo_chk => now%month
+      i_cl => now%day
       mvaro = 33
       mhruo = 78
       mrcho = 62

@@ -117,9 +117,7 @@
       integer :: ilog, i, itotr, iwq, iskip, scenario, ifirstpet
       type(SQL_TIMESTAMP_STRUCT), target :: now =
      &     SQL_TIMESTAMP_STRUCT( 0, 0, 1, 0, 0, 0, 0 )
-      integer(c_short), pointer :: iyr => now%year
-      integer(c_short), pointer :: mo_chk => now%month
-      integer(c_short), pointer :: i_cl => now%day
+      integer(c_short), pointer :: iyr, mo_chk, i_cl
       integer :: itotb,itots,iprp,pcpsim,itoth,nd_30,iops,iphr,isto,isol
       integer :: iscen, fcstyr, fcstday, fcstcycles, subtot, ogen
       integer :: msub, mhruo, mres, mapp, mpst, mlyr, igen, iprint, iida
