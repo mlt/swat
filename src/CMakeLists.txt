@@ -45,6 +45,7 @@ set( SWAT_SRCS
   depstor.f
   distrib_bmps.f
   dormant.f
+  doy2md.f
   drains.f
   dstn1.f
   ee.f
@@ -84,7 +85,6 @@ set( SWAT_SRCS
   hrupondhr.f
   hruyr.f
   hydroinit.f
-  icl.f
   impnd_init.f
   impndaa.f
   impndday.f
@@ -294,7 +294,6 @@ set( SWAT_SRCS
   writeaa.f
   writed.f
   writem.f
-  xmon.f
   ysed.f
   zero0.f
   zero1.f
