@@ -88,7 +88,7 @@
 
 !!    ~ ~ ~ SUBROUTINES/FUNCTIONS CALLED ~ ~ ~
 !!    Intrinsic: Mod, Real
-!!    SWAT: sim_inityr, std3, xmon, sim_initday, clicon, command
+!!    SWAT: sim_inityr, std3, doy2md, sim_initday, clicon, command
 !!    SWAT: writed, writem, tillmix
 
 !!    ~ ~ ~ ~ ~ ~ END SPECIFICATIONS ~ ~ ~ ~ ~ ~
@@ -136,7 +136,7 @@
         iida = 0
         iida = id1
 
-        call xmon
+        call doy2md
        if (ifirstatmo == 1) then
          ifirstatmo = 0
          if (iatmodep == 1) then 
@@ -157,6 +157,7 @@
        
        
         do i = id1, idlst                            !! begin daily loop
+c$$$           call doy2md
 
           !!if last day of month 
           if (i_mo /= mo_chk) then
@@ -259,11 +260,11 @@
           if (isol == 1) call soil_write
 
             iida = i + 1
-            call xmon
+            call doy2md
             call writem
           else
             iida = i + 1
-            call xmon
+            call doy2md
           endif
 
         end do                                        !! end daily loop

@@ -1,4 +1,5 @@
       module parm
+      use fodbc, only: c_short, SQL_TIMESTAMP_STRUCT
       integer icalen
 !!   change per JGA 8/31/2011 gsm for output.mgt 
       real :: yield, burn_frlb, pst_kg
@@ -111,9 +112,14 @@
 !    Drainmod tile equations  01/2006
       integer :: mtil, mvaro, mrecd, idist, mudb, mrecm, mrecc, iclb
       integer :: mrecy, ipet, nyskip, ideg, ievent, slrsim, iopera
-      integer :: id1, idaf, idal, leapyr, mo_chk, rhsim, mstdo
+      integer :: id1, idaf, idal, leapyr, rhsim, mstdo
       integer :: ifirsts, ifirsth, ifirstw, nstot, nhtot, nwtot, icst
-      integer :: ilog, i, iyr, itotr, iwq, iskip, scenario, ifirstpet
+      integer :: ilog, i, itotr, iwq, iskip, scenario, ifirstpet
+      type(SQL_TIMESTAMP_STRUCT), target :: now =
+     &     SQL_TIMESTAMP_STRUCT( 0, 0, 1, 0, 0, 0, 0 )
+      integer(c_short), pointer :: iyr => now%year
+      integer(c_short), pointer :: mo_chk => now%month
+      integer(c_short), pointer :: i_cl => now%day
       integer :: itotb,itots,iprp,pcpsim,itoth,nd_30,iops,iphr,isto,isol
       integer :: iscen, fcstyr, fcstday, fcstcycles, subtot, ogen
       integer :: msub, mhruo, mres, mapp, mpst, mlyr, igen, iprint, iida

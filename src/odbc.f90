@@ -89,7 +89,7 @@ contains
     character(512) :: fmt, sql
     integer :: ii
     write (fmt, '(A, I2, A)') &
-         '("create table output_sub (SUB integer, MON integer, AREAkm2 real", ', &
+         '("create table output_sub (SUB integer, ""date"" timestamp, AREAkm2 real", ', &
          itotb, '(", ", A, " real"), ")")'
     write (sql, fmt) (sub_columns(ii), ii=1, itotb)
     write (*,*) len_trim(sql), trim(sql)
@@ -168,12 +168,12 @@ contains
 
 
   subroutine prepare_sub(self)
-    use parm, only: itotb, iyr, ipdvab
+    use parm, only: itotb, now, ipdvab
     class(db_out_type) :: self
     character(512, c_char) :: sql, fmt
     integer :: ii
     self%sub_stmt = allocate_statement(self)
-    write (fmt, '(A, I2, A)')'("insert into ", A, " (SUB,MON,AREAkm2",', &
+    write (fmt, '(A, I2, A)')'("insert into ", A, " (SUB,""date"",AREAkm2",', &
          itotb, '(",", A), ") values(?,?,?' // repeat(",?", itotb) // ') ")'
 
     write (sql, fmt) "output_sub", (sub_columns(ii), ii=1, itotb)
@@ -183,7 +183,7 @@ contains
        write (*,*) "Failed to prepare statement"
        call print_diag(SQL_HANDLE_STMT, self%sub_stmt)
     end if
-    if (SQL_SUCCESS /= SQLBindParameter(self%sub_stmt, 2_2, iyr)) then
+    if (SQL_SUCCESS /= SQLBindParameter(self%sub_stmt, 2_2, now)) then
        write (*,*) "Failed to bind iyr"
        call print_diag(SQL_HANDLE_STMT, self%sub_stmt)
     end if

@@ -289,7 +289,7 @@
                 else
                   iida = 0
                   iida = idaf
-                  call xmon
+                  call doy2md
                   write (40+inum1s(idum),5501) iyr, i_mo,               &
      &                                              (iida - ndays(i_mo))
                 end if

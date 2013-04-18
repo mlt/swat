@@ -48,9 +48,26 @@
 !!    ~ ~ ~ ~ ~ ~ END SPECIFICATIONS ~ ~ ~ ~ ~ ~
 
       use parm
+      use odbc
 
       integer :: sb, ii
       real, dimension (msubo) :: pdvab, pdvb
+      real :: km
+
+      if (IA_B_BINARY == ia_b) then
+         if (SQL_SUCCESS /= SQLBindParameter(db_out%sub_stmt, 1_2, sb))
+     &        then
+            write (*,*) "Failed to bind sb"
+            call print_diag(SQL_HANDLE_STMT, db_out%sub_stmt)
+         end if
+         if (SQL_SUCCESS /= SQLBindParameter(db_out%sub_stmt, 3_2, km))
+     &        write (*,*) "Failed to bind sub_km"
+         do ii = 1, itotb
+            if (SQL_SUCCESS /= SQLBindParameter(db_out%sub_stmt,
+     &           int(ii+3, 2), pdvab(ipdvab(ii))))
+     &           write (*, '("Failed to bind ipdvab", I2)') ii
+         end do
+      end if
 
       do sb = 1, subtot
 
@@ -88,8 +105,16 @@
           do ii = 1, itotb
             pdvb(ii) = pdvab(ipdvab(ii))
           end do
+          if (IA_B_BINARY == ia_b) then
+             km = sub_km(sb)
+             if (SQL_SUCCESS /= SQLExecute(db_out%sub_stmt)) then
+                write (*,*) "Failed to execute statement"
+                call print_diag(SQL_HANDLE_STMT, db_out%sub_stmt)
+             end if
+          else
           write (31,1000) sb, subgis(sb), mo_chk, sub_km(sb),           &
      &                                         (pdvb(ii), ii = 1, itotb)
+          end if
         else
           write (31,1000) sb, subgis(sb), mo_chk, sub_km(sb),           &
      &                                        (pdvab(ii), ii = 1, msubo)

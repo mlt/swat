@@ -56,10 +56,12 @@
 !!    ~ ~ ~ ~ ~ ~ END SPECIFICATIONS ~ ~ ~ ~ ~ ~
 
       use parm
+      use odbc
 
       integer :: sb, ii
       real :: sub_ha
       real, dimension (msubo) :: pdvab, pdvb
+      real :: km
 
       sb = 0
       sb = hru_sub(ihru)
@@ -67,11 +69,24 @@
       sub_ha = 0.
       sub_ha = da_ha * sub_fr(sb)
 
+      if (IA_B_BINARY == ia_b) then
+         if (SQL_SUCCESS /= SQLBindParameter(db_out%sub_stmt, 1_2, sb))
+     &        then
+            write (*,*) "Failed to bind sb"
+            call print_diag(SQL_HANDLE_STMT, db_out%sub_stmt)
+         end if
+         if (SQL_SUCCESS /= SQLBindParameter(db_out%sub_stmt, 3_2, km))
+     &        write (*,*) "Failed to bind sub_km"
+         do ii = 1, itotb
+            if (SQL_SUCCESS /= SQLBindParameter(db_out%sub_stmt,
+     &           int(ii+3, 2), pdvab(ipdvab(ii))))
+     &           write (*, '("Failed to bind ipdvab", I2)') ii
+         end do
+      end if
+
       pdvab = 0.
       pdvb = 0.
       
-      ii = icl(iida)
-
       pdvab(1) = sub_subp(sb)
       pdvab(2) = sub_snom(sb)
       pdvab(3) = sub_pet(sb)
@@ -99,20 +114,23 @@
         do ii = 1, itotb
           pdvb(ii) = pdvab(ipdvab(ii))
         end do
+
+        if (IA_B_BINARY == ia_b) then
+           km = sub_km(sb)
+           if (SQL_SUCCESS /= SQLExecute(db_out%sub_stmt)) then
+              write (*,*) "Failed to execute statement"
+              call print_diag(SQL_HANDLE_STMT, db_out%sub_stmt)
+           end if
+        else
         if (icalen == 0) write(31,1000)sb, subgis(sb), iida, sub_km(sb),&
      &                                        (pdvb(ii), ii = 1, itotb)
-        if (icalen == 1) write(31,1001)sb, subgis(sb), i_mo, icl(iida), &
+        if (icalen == 1) write(31,1001)sb, subgis(sb), i_mo, i_cl,      &
      &         iyr, sub_km(sb), (pdvb(ii), ii = 1, itotb)
- 
-!!    added for binary files 3/25/09 gsm line below and write (66666
-	      if (ia_b == 1) then
-	        write (66666) sb, subgis(sb), iida, sub_km(sb),               
-     &                                        (pdvb(ii), ii = 1, itotb)
-	      endif
+        end if
       else
         if (icalen == 0)write(31,1000) sb, subgis(sb), iida, sub_km(sb),&
      &                                        (pdvab(ii), ii = 1, msubo)
-        if (icalen == 1)write(31,1001) sb, subgis(sb), i_mo, icl(iida), &
+        if (icalen == 1)write(31,1001) sb, subgis(sb), i_mo, i_cl,      &
      &         iyr, sub_km(sb), (pdvab(ii), ii = 1, msubo)
 !!    added for binary files 3/25/09 gsm line below and write (6666
 	        if (ia_b == 1) then

@@ -183,10 +183,6 @@
           pdvar(45) = 0. 
         endif
 
-!!  compute month and day given julian day
-        call xmon 
-        ii = icl(iida) 
-
       if (ievent==3.and.iprint==3) then
 	  ! print out subdaily reach output in output.rch
         if (ipdvar(1) > 0) then
@@ -215,7 +211,7 @@
           if (iscen == 1 .and. isproj == 0) then
             if (icalen == 0) write (7,5000) j, subgis(j), iida,          &
      &             rch_dakm(j), (pdvr(ii), ii = 1, itotr)
-            if(icalen == 1)write (7,5002) j, subgis(j), i_mo, icl(iida),& 
+            if(icalen == 1)write (7,5002) j, subgis(j), i_mo, i_cl,     & 
      &             iyr, rch_dakm(j), (pdvr(ii), ii = 1, itotr)
 !!    added for binary files 3/25/09 gsm line below and write (77777
 	      if (ia_b == 1) then
@@ -228,7 +224,7 @@
           else if (iscen == 1 .and. isproj == 2) then
           if(icalen == 0)write (7,6000) j, subgis(j), iida, rch_dakm(j),&
      &                               (pdvr(ii), ii = 1, itotr),iyr 
-          if(icalen == 1) write (7,6002) j, subgis(j), i_mo, icl(iida), &
+          if(icalen == 1) write (7,6002) j, subgis(j), i_mo, i_cl,      &
      &          iyr, rch_dakm(j),(pdvr(ii), ii = 1, itotr), iyr
           endif
         else
@@ -237,7 +233,7 @@
           if (iscen == 1 .and. isproj == 0) then
           if (icalen == 0)write(7,5000) j, subgis(j), iida, rch_dakm(j),&
      &                                        (pdvar(ii), ii = 1, 45)
-          if (icalen == 1) write (7,5002) j, subgis(j), i_mo, icl(iida),&
+          if (icalen == 1) write (7,5002) j, subgis(j), i_mo, i_cl,     &
      &            iyr, rch_dakm(j),(pdvar(ii), ii = 1, 45)
 
 !!    added for binary files 3/25/09 gsm line below and write (77777
@@ -252,7 +248,7 @@
           else if (iscen == 1 .and. isproj == 2) then
           if (icalen == 0)write(7,6000) j, subgis(j), iida, rch_dakm(j),&
      &                               (pdvar(ii), ii = 1, 45), iyr 
-          if (icalen == 1) write (7,6002) j, subgis(j), i_mo, icl(iida),&
+          if (icalen == 1) write (7,6002) j, subgis(j), i_mo, i_cl,     &
      &              iyr, rch_dakm(j), (pdvar(ii), ii = 1, 45)
           endif
         end if
