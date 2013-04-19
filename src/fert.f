@@ -147,7 +147,7 @@
       use parm
 
       real, parameter :: rtof=0.5
-      integer :: j, l
+      integer :: j, l, ifrt
       real :: xx, gc, gc1, swf, frt_t
 
       !!added by zhang
