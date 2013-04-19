@@ -212,7 +212,7 @@
               sol_LMC(l,j) = sol_LMC(l,j) + XXX
               YY = X1 * X10
               sol_LM(l,j) = sol_LM(l,j) + YY
-              ZZ = X1 *forgn(ifrt) * X10
+              ZZ = X1 *forgn(ifrttyp) * X10
               sol_LMN(l,j) = sol_LMN(l,j) + ZZ
               sol_LSN(l,j) = sol_LSN(l,j) + X1
      &                      *forgn(it) -ZZ
