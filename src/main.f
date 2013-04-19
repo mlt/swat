@@ -78,10 +78,6 @@ c$$$      if (.not. db_in%connect(dsn)) stop
       call getallo
       call allocate_parms
       call readfile
-      call retrev('swat_out', dsn, iflen, ier)
-      if (.not. db_out%connect(dsn)) then
-         write (*,*) "Failed to connect to output DB"
-      end if
       call readbsn
       call readwwq
       if (fcstyr > 0 .and. fcstday > 0) call readfcst
@@ -98,8 +94,14 @@ c$$$      if (.not. db_in%connect(dsn)) stop
       call std1
       call std2
       call openwth
-c$$$      if (IA_B_BINARY == ia_b) then
-      call db_out%prepare()
+      if (IA_B_BINARY == ia_b) then
+         call retrev('swat_out', dsn, iflen, ier)
+         if (.not. db_out%connect(dsn)) then
+            write (*,*) "Failed to connect to output DB"
+            stop
+         end if
+         call db_out%prepare()
+      end if
 c$$$      else
       call headout
 c$$$      end if
