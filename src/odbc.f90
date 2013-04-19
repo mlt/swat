@@ -59,7 +59,6 @@ contains
     character(*), intent(in) :: connstr
     logical :: connect
     connect = .false.
-    write (*, '("Connection string: ", A)') trim(connstr)
     if (SQL_SUCCESS /= SQLAllocHandle(SQL_HANDLE_ENV, C_NULL_PTR, self%env)) then
        print *, "Can't allocate environment"
        return
@@ -92,7 +91,6 @@ contains
          '("create table output_sub (SUB integer, ""date"" timestamp, AREAkm2 real", ', &
          itotb, '(", ", A, " real"), ")")'
     write (sql, fmt) (sub_columns(ii), ii=1, itotb)
-    write (*,*) len_trim(sql), trim(sql)
     stmt = allocate_statement(db_out)
     if (SQL_SUCCESS /= SQLExecDirect(stmt, sql, len_trim(sql))) then
        write (*,*) "Failed to create output_sub"
@@ -177,7 +175,6 @@ contains
          itotb, '(",", A), ") values(?,?,?' // repeat(",?", itotb) // ') ")'
 
     write (sql, fmt) "output_sub", (sub_columns(ii), ii=1, itotb)
-    write(*,*) sql
 
     if (SQL_SUCCESS /= SQLPrepare(self%sub_stmt, sql, len_trim(sql))) then
        write (*,*) "Failed to prepare statement"
